@@ -1,0 +1,96 @@
+{
+  "success": true,
+  "predictions": {
+    "Melanoma": 0.0,
+    "Basal Cell Carcinoma": 0.0,
+    "Benign Nevus": 0.99
+  },
+  "gradcam": {
+    "heatmap_base64": "",
+    "top_prediction": "Benign Nevus",
+    "confidence": 0.99
+  },
+  "model1": {
+    "prediction": "Benign Nevus",
+    "confidence": 0.99,
+    "status": "success",
+    "probabilities": {
+      "Benign Nevus": 0.99,
+      "Melanoma": 0.005,
+      "Basal Cell Carcinoma": 0.005
+    },
+    "label": "Benign Nevus",
+    "model_name": "ResNet50-3Class"
+  },
+  "model2": {
+    "prediction": "Benign Nevus",
+    "confidence": 0.97,
+    "status": "success",
+    "probabilities": {
+      "Benign Nevus": 0.97,
+      "Melanoma": 0.02,
+      "Basal Cell Carcinoma": 0.01
+    },
+    "gradcam": "",
+    "model_name": "ResNet-152V2",
+    "input_type": "vision"
+  },
+  "gate": {
+    "route": "early_stop",
+    "reason": "both_negative"
+  },
+  "model3": {
+    "class_id": 0,
+    "class_name": "Benign Nevus",
+    "confidence_score": 0.97,
+    "prediction": "Benign Nevus",
+    "confidence": 97.0,
+    "probabilities": {
+      "Benign Nevus": 0.97,
+      "Melanoma": 0.015,
+      "Basal Cell Carcinoma": 0.015
+    },
+    "gradcam": "",
+    "input_preview_base64": "",
+    "model_name": "DenseNet-121",
+    "status": "success"
+  },
+  "model4_swint": {
+    "prediction": "Benign Nevus",
+    "confidence": 0.95,
+    "status": "success",
+    "probabilities": {
+      "Benign Nevus": 0.95,
+      "Melanoma": 0.03,
+      "Basal Cell Carcinoma": 0.02
+    },
+    "model_name": "Swin-T"
+  },
+  "model5_densenet": {
+    "prediction": "Benign Nevus",
+    "confidence": 0.88,
+    "status": "success",
+    "probabilities": {
+      "Benign Nevus": 0.88
+    },
+    "model_name": "DenseNet-121-H5"
+  },
+  "llm_evaluation": {
+    "status": "skipped",
+    "text": "No Gemini API key configured.",
+    "error_code": "educator_no_api_key"
+  },
+  "timing_ms": {
+    "model1": 120.0,
+    "model2": 95.0,
+    "model3": 140.0,
+    "model4": 80.0,
+    "total": 435.0
+  },
+  "provenance": {
+    "run_mode": "hybrid",
+    "model1": { "source": "model", "status": "ok" },
+    "model2": { "source": "model", "status": "ok" },
+    "model3": { "source": "model", "status": "ok" }
+  }
+}
