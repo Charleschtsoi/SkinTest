@@ -39,7 +39,7 @@ export function PrivacyNotice() {
           disabled={!educationalNotDiagnosticAck}
           onClick={() => {
             warmBackend();
-            setUploadFlowStep(3);
+            setUploadFlowStep(2);
           }}
         >
           {t("upload.privacy.next")}

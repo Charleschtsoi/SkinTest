@@ -3,12 +3,10 @@ import { clearPersistedAnalyzeSuccessSession } from "@/lib/analysis-session-stor
 import type { AnalyzeSuccessResponse, DenseNetResponse } from "@/types";
 import { predictDenseNet } from "@/lib/api";
 
-export type UploadFlowStep = 1 | 2 | 3;
+export type UploadFlowStep = 1 | 2;
 
 export interface AppState {
   uploadFlowStep: UploadFlowStep;
-  doctorReviewed: boolean | null;
-  doctorGateNoBranch: boolean;
   educationalNotDiagnosticAck: boolean;
   imageFile: File | null;
   previewUrl: string | null;
@@ -19,8 +17,6 @@ export interface AppState {
   denseNetLoading: boolean;
   denseNetResult: DenseNetResponse | null;
   setUploadFlowStep: (step: UploadFlowStep) => void;
-  setDoctorReviewed: (value: boolean | null) => void;
-  setDoctorGateNoBranch: (value: boolean) => void;
   setEducationalNotDiagnosticAck: (value: boolean) => void;
   setImage: (file: File | null, previewUrl: string | null) => void;
   setAnalysis: (result: AnalyzeSuccessResponse | null) => void;
@@ -35,8 +31,6 @@ export interface AppState {
 
 const baseInitial = {
   uploadFlowStep: 1 as UploadFlowStep,
-  doctorReviewed: null as boolean | null,
-  doctorGateNoBranch: false,
   educationalNotDiagnosticAck: false,
   imageFile: null as File | null,
   previewUrl: null as string | null,
@@ -54,8 +48,6 @@ function revokePreview(url: string | null) {
 export const useAppStore = create<AppState>((set, get) => ({
   ...baseInitial,
   setUploadFlowStep: (uploadFlowStep) => set({ uploadFlowStep }),
-  setDoctorReviewed: (doctorReviewed) => set({ doctorReviewed }),
-  setDoctorGateNoBranch: (doctorGateNoBranch) => set({ doctorGateNoBranch }),
   setEducationalNotDiagnosticAck: (educationalNotDiagnosticAck) => set({ educationalNotDiagnosticAck }),
   setImage: (imageFile, previewUrl) =>
     set((state) => {

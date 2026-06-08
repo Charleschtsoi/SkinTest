@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useAppMotion } from "@/lib/app-motion";
@@ -13,14 +13,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { ResultsImageTabs } from "@/components/results/ResultsImageTabs";
 import { LlmEducatorCard } from "@/components/results/LlmEducatorCard";
 import { FindingsCard } from "@/components/results/FindingsCard";
-import { DoctorQuestions } from "@/components/results/DoctorQuestions";
 import { LearnMoreCards } from "@/components/results/LearnMoreCards";
 import { ResultsStickyDisclaimer } from "@/components/results/ResultsStickyDisclaimer";
 import { getNotableFindings } from "@/lib/findings-utils";
-import {
-  buildEducationalInsights,
-  educationalInsightsToPdfLines,
-} from "@/lib/educational-insights";
 import { buildEducationReportPdf } from "@/lib/pdf-report";
 import { pickLlmMarkdownForLocale } from "@/lib/llm-evaluation-display";
 import { FileDown, Loader2 } from "lucide-react";
@@ -30,9 +25,7 @@ import {
   mergeDenseNetDisplayForUi,
   model3PredictionString,
 } from "@/lib/dense-net-from-analysis";
-import { buildHighAttentionFindingKeys } from "@/lib/high-attention-findings";
-import type { AiNoticeFindingRow, AnalyzeSuccessResponse, EducationalInsight, FindingLabel } from "@/types";
-import { aiNoticeRowHeadline, conditionName } from "@/lib/i18n";
+import { conditionName } from "@/lib/i18n";
 import {
   flatPipelineImpactRows,
   isFlatSectionProvenance,
@@ -57,19 +50,6 @@ import {
   modelResultToneFromPrediction,
 } from "@/lib/model-summary-display";
 import { model2VisionFromAnalysis } from "@/lib/model2-vision";
-function buildScanSummaryForInsights(analysis: AnalyzeSuccessResponse): string {
-  const parts: string[] = [];
-  if (analysis.gradcam?.top_prediction) {
-    parts.push(`Top attention: ${analysis.gradcam.top_prediction}`);
-  }
-  if (analysis.model1?.label) parts.push(`Model 1: ${analysis.model1.label}`);
-  const m3 = model3PredictionString(analysis.model3);
-  if (m3) parts.push(`Model 3: ${m3}`);
-  const m2 = model2VisionFromAnalysis(analysis);
-  if (m2?.prediction) parts.push(`Model 2: ${m2.prediction}`);
-  return parts.join("; ");
-}
-
 /** Raw base64 for attention overlay (tabs + PDF); strips `data:image/...;base64,` if present. */
 function heatmapBase64ForDisplay(raw: string | null | undefined): string {
   if (!raw || !raw.trim()) return "";
@@ -99,7 +79,6 @@ export default function ResultsPage() {
   const previewUrl = useAppStore((s) => s.previewUrl);
   const analysis = useAppStore((s) => s.analysis);
   const loading = useAppStore((s) => s.analysisLoading);
-  const doctorReviewed = useAppStore((s) => s.doctorReviewed);
   const imageFile = useAppStore((s) => s.imageFile);
   const resetUploadFlow = useAppStore((s) => s.resetUploadFlow);
   const denseNetLoading = useAppStore((s) => s.denseNetLoading);
@@ -108,12 +87,7 @@ export default function ResultsPage() {
   const denseNetFromAnalyze = analysis ? denseNetResponseFromAnalyzeModel3(analysis) : null;
   const denseNetDisplay = analysis ? mergeDenseNetDisplayForUi(denseNetFromAnalyze, denseNetResult) : null;
 
-  const [educationalInsights, setEducationalInsights] = useState<EducationalInsight[] | null>(null);
-  const [insightsSource, setInsightsSource] = useState<"llm" | "rules" | null>(null);
-  const [isQuestionsLoading, setIsQuestionsLoading] = useState(false);
   const [sessionRestored, setSessionRestored] = useState(false);
-  const hasFetchedQuestions = useRef(false);
-  const prevAnalysisRef = useRef<typeof analysis>(undefined);
 
   useLayoutEffect(() => {
     if (typeof window === "undefined") return;
@@ -136,101 +110,6 @@ export default function ResultsPage() {
       router.replace("/upload");
     }
   }, [analysis, loading, router, sessionRestored]);
-
-  useEffect(() => {
-    console.log("Q&A Hook Triggered. Analysis exists:", !!analysis);
-
-    if (prevAnalysisRef.current !== analysis) {
-      console.log("Q&A: Analysis identity changed; resetting fetch guard and loading.");
-      hasFetchedQuestions.current = false;
-      prevAnalysisRef.current = analysis;
-      setIsQuestionsLoading(false);
-    }
-
-    if (!analysis) {
-      setEducationalInsights(null);
-      setInsightsSource(null);
-      setIsQuestionsLoading(false);
-      return;
-    }
-
-    if (hasFetchedQuestions.current) {
-      return;
-    }
-
-    const high_attention_findings = buildHighAttentionFindingKeys(analysis, denseNetDisplay);
-    if (high_attention_findings.length === 0) {
-      setEducationalInsights(null);
-      setInsightsSource(null);
-      setIsQuestionsLoading(false);
-      hasFetchedQuestions.current = true;
-      return;
-    }
-
-    const fetchInsights = async () => {
-      hasFetchedQuestions.current = true;
-      setIsQuestionsLoading(true);
-      try {
-        const res = await fetch("/api/generate-questions", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            high_attention_findings,
-            locale,
-            scan_summary: buildScanSummaryForInsights(analysis),
-          }),
-        });
-
-        if (!res.ok) {
-          throw new Error(`Proxy returned status ${res.status}`);
-        }
-
-        const data: unknown = await res.json();
-        const rawList =
-          data && typeof data === "object"
-            ? (data as { educational_insights?: unknown }).educational_insights
-            : undefined;
-        const source =
-          data && typeof data === "object" && (data as { source?: string }).source === "llm"
-            ? "llm"
-            : "rules";
-        if (!Array.isArray(rawList)) {
-          setEducationalInsights([]);
-          setInsightsSource(null);
-          return;
-        }
-        const list = rawList.flatMap((item, i): EducationalInsight[] => {
-          if (!item || typeof item !== "object") return [];
-          const row = item as Record<string, unknown>;
-          const text = typeof row.text === "string" ? row.text.trim() : "";
-          if (!text) return [];
-          const title =
-            typeof row.title === "string" && row.title.trim()
-              ? row.title.trim()
-              : text.slice(0, 72);
-          return [
-            {
-              id: typeof row.id === "string" ? row.id : `i${i + 1}`,
-              title,
-              text,
-              finding_trigger:
-                typeof row.finding_trigger === "string" ? row.finding_trigger : "General",
-              category: typeof row.category === "string" ? row.category : undefined,
-            },
-          ];
-        });
-        setEducationalInsights(list);
-        setInsightsSource(source);
-      } catch {
-        setEducationalInsights([]);
-        setInsightsSource(null);
-      } finally {
-        setIsQuestionsLoading(false);
-      }
-    };
-
-    fetchInsights();
-  }, [analysis, denseNetDisplay, locale]);
 
   if (!analysis && loading) {
     return (
@@ -273,16 +152,7 @@ export default function ResultsPage() {
     label: f.label,
     sectionKey: "id" in f && typeof f.id === "string" ? f.id : `finding-${f.label}`,
   }));
-  const doctorQuestionFindings = findingsForSections.map((f) => {
-    const row = f as AiNoticeFindingRow | { label: FindingLabel; score: number };
-    const displayName =
-      "noticeKind" in row
-        ? aiNoticeRowHeadline(locale, row.label, row.noticeKind)
-        : conditionName(locale, row.label);
-    return { label: row.label, displayName };
-  });
   const stageLabel = (value: string) => t(`stage.${value}`, value);
-  const gateLabel = (value: string) => t(`gate.${value}`, value);
   const model3SummaryText = (() => {
     if (denseNetDisplay?.success && denseNetDisplay.prediction && Number.isFinite(denseNetDisplay.confidence)) {
       return formatClassifierSummaryLine(stageLabel, denseNetDisplay.prediction, {
@@ -369,12 +239,6 @@ export default function ResultsPage() {
       : analysis.model4
         ? `${t("results.reportSummaryGenerated")} ${conditionName(locale, analysis.gradcam.top_prediction)}.`
         : null;
-  const fallbackInsights = buildEducationalInsights(doctorQuestionFindings, locale);
-  const resolvedInsights =
-    insightsSource === "llm" && educationalInsights && educationalInsights.length > 0
-      ? educationalInsights
-      : fallbackInsights;
-  const pdfInsightLines = educationalInsightsToPdfLines(resolvedInsights);
   const runMode = analysis.provenance?.run_mode ?? "real";
   const runModeLabel = t(`results.runMode.${runMode}`, runMode);
   const warningMessages = (analysis.warnings ?? []).map((w) => w.message);
@@ -407,12 +271,6 @@ export default function ResultsPage() {
           sourceKind: "rule",
           status:
             findingsForSections.length > 0 ? t("results.impact.statusOk") : t("results.impact.statusFallback"),
-        },
-        {
-          section: t("results.impact.questionsSection"),
-          source: t("results.impact.sourceRulesModel"),
-          sourceKind: "rule",
-          status: t("results.impact.statusOk"),
         },
         {
           section: t("results.impact.reportSection"),
@@ -555,9 +413,7 @@ export default function ResultsPage() {
             ],
           },
         ],
-        gateLine: analysis.gate
-          ? `${t("results.gateDecision")}: ${gateLabel(analysis.gate.route)} (${gateLabel(analysis.gate.reason)})`
-          : null,
+        gateLine: null,
         clinicalRiskLine: null,
         reportSummaryLabel: t("results.reportSummary"),
         reportSummaryValue: reportSummary ?? t("results.na"),
@@ -567,8 +423,8 @@ export default function ResultsPage() {
           scorePct: Math.round(f.score * 100),
         })),
         noFindingsText: t("results.noSignificant"),
-        doctorQuestionsTitle: t("results.questionsTitle"),
-        doctorQuestions: pdfInsightLines,
+        doctorQuestionsTitle: "",
+        doctorQuestions: [],
         warningsTitle: t("results.warningsTitle"),
         warnings: warningMessages,
         footerDisclaimer: t("results.sticky"),
@@ -630,14 +486,6 @@ export default function ResultsPage() {
         </AlertDescription>
       </Alert>
 
-      {doctorReviewed === false && (
-        <Alert className="mt-4 border-amber-300 bg-amber-100/90 text-foreground shadow-sm">
-          <AlertDescription className="text-sm font-medium text-amber-950">
-            ⚠️ {t("results.noDoctor")}
-          </AlertDescription>
-        </Alert>
-      )}
-
       <motion.div
         className="mt-8"
         initial={{ opacity: 0 }}
@@ -652,6 +500,13 @@ export default function ResultsPage() {
         />
       </motion.div>
 
+      <div className="mt-8">
+        <FindingsCard
+          predictions={predictions}
+          findingsBadgeSource={resolveFindingsBadgeSource(analysis.provenance)}
+        />
+      </div>
+
       <div className="mt-8 grid gap-4 md:grid-cols-2">
         <Card>
           <CardHeader>
@@ -659,20 +514,6 @@ export default function ResultsPage() {
           </CardHeader>
           <CardContent className="space-y-5 text-sm text-muted-foreground">
             <VisualXrayPipelineSection rows={visualPipelineRows} />
-
-            <div className="flex flex-wrap items-start justify-between gap-2">
-              <p className="min-w-0 flex-1">
-                <span className="font-medium text-foreground">{t("results.gateDecision")}: </span>
-                {analysis.gate
-                  ? `${gateLabel(analysis.gate.route)} (${gateLabel(analysis.gate.reason)})`
-                  : t("results.na")}
-              </p>
-              <SectionSourceBadge
-                source={
-                  analysis.provenance?.gate_decision ?? (nestedProv ? "rule" : undefined)
-                }
-              />
-            </div>
           </CardContent>
         </Card>
 
@@ -738,25 +579,6 @@ export default function ResultsPage() {
       </Card>
 
       <div className="mt-10 space-y-10">
-        <FindingsCard
-          predictions={predictions}
-          findingsBadgeSource={resolveFindingsBadgeSource(analysis.provenance)}
-        />
-        <DoctorQuestions
-          findings={findingsForSections}
-          insightsProvenance={
-            insightsSource === "llm"
-              ? "llm"
-              : insightsSource === "rules"
-                ? "rules"
-                : analysis.provenance?.doctor_questions ??
-                  (nestedProv ? "rules" : undefined)
-          }
-          insights={
-            isQuestionsLoading ? null : resolvedInsights
-          }
-          isLoading={isQuestionsLoading}
-        />
         <LearnMoreCards
           findings={learnMoreFindings}
           anatomyGuideProvenance={

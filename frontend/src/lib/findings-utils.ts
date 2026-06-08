@@ -6,10 +6,9 @@ import type {
   AnalyzeSuccessResponse,
   DenseNetResponse,
   Predictions,
-  PneumoniaNoticeKind,
 } from "@/types";
 
-export type { AiNoticeFindingRow, PneumoniaNoticeKind } from "@/types";
+export type { AiNoticeFindingRow, SkinNoticeKind } from "@/types";
 
 const THRESHOLD = 0.3;
 
@@ -66,80 +65,37 @@ export function modelClassKeyToFindingLabel(className: string): FindingLabel | n
   return null;
 }
 
-/** Classifies pneumonia-related probability keys for separate bacterial vs viral notice rows. */
-export function classifyPneumoniaSubtype(classKey: string): "bacterial" | "viral" | "generic" | "none" {
-  const s = classKey.trim();
-  const lower = s.toLowerCase();
-  const isPneumoniaClass =
-    lower.includes("pneumonia") || s === "Viral Pneumonia" || lower === "viral pneumonia";
-  if (!isPneumoniaClass) return "none";
-  if (
-    s === "Pneumonia-Bacteria" ||
-    lower.includes("bacterial") ||
-    (lower.includes("pneumonia") && lower.includes("bacteria"))
-  ) {
-    return "bacterial";
-  }
-  if (
-    s === "Pneumonia-Virus" ||
-    s === "Viral Pneumonia" ||
-    lower.includes("viral") ||
-    (lower.includes("pneumonia") && lower.includes("virus"))
-  ) {
-    return "viral";
-  }
-  return "generic";
-}
-
-type ModelNoticeAgg = {
-  pneumoBacterial: number;
-  pneumoViral: number;
-  pneumoGeneric: number;
-  other: Map<FindingLabel, number>;
-};
-
-function emptyAgg(): ModelNoticeAgg {
-  return { pneumoBacterial: 0, pneumoViral: 0, pneumoGeneric: 0, other: new Map() };
-}
-
-function absorbProbs(agg: ModelNoticeAgg, probabilities: Record<string, number> | undefined | null) {
-  if (!probabilities) return;
-  for (const [key, raw] of Object.entries(probabilities)) {
-    const score = normalizeProbabilityToUnit(raw);
-    if (!(score > MODEL_NOTICE_THRESHOLD)) continue;
-    const ps = classifyPneumoniaSubtype(key);
-    if (ps === "bacterial") {
-      agg.pneumoBacterial = Math.max(agg.pneumoBacterial, score);
-    } else if (ps === "viral") {
-      agg.pneumoViral = Math.max(agg.pneumoViral, score);
-    } else if (ps === "generic") {
-      agg.pneumoGeneric = Math.max(agg.pneumoGeneric, score);
-    } else {
-      const lab = modelClassKeyToFindingLabel(key);
-      if (!lab) continue;
-      agg.other.set(lab, Math.max(agg.other.get(lab) ?? 0, score));
-    }
-  }
-}
-
-function collectModelNoticeAggregate(
+function collectModelNoticeScores(
   analysis: AnalyzeSuccessResponse,
   denseNetDisplay: DenseNetResponse | null,
-): ModelNoticeAgg {
-  const agg = emptyAgg();
-  absorbProbs(agg, analysis.model1?.probabilities);
-  absorbProbs(agg, model2VisionFromAnalysis(analysis)?.probabilities);
-  absorbProbs(agg, analysis.model4_swint?.probabilities);
-  absorbProbs(agg, analysis.model5_densenet?.probabilities);
+): Map<FindingLabel, number> {
+  const scores = new Map<FindingLabel, number>();
+
+  const absorb = (probabilities: Record<string, number> | undefined | null) => {
+    if (!probabilities) return;
+    for (const [key, raw] of Object.entries(probabilities)) {
+      const score = normalizeProbabilityToUnit(raw);
+      if (!(score > MODEL_NOTICE_THRESHOLD)) continue;
+      const lab = modelClassKeyToFindingLabel(key);
+      if (!lab) continue;
+      scores.set(lab, Math.max(scores.get(lab) ?? 0, score));
+    }
+  };
+
+  absorb(analysis.model1?.probabilities);
+  absorb(model2VisionFromAnalysis(analysis)?.probabilities);
+  absorb(analysis.model4_swint?.probabilities);
+  absorb(analysis.model5_densenet?.probabilities);
   if (denseNetDisplay?.success && denseNetDisplay.probabilities) {
-    absorbProbs(agg, denseNetDisplay.probabilities);
+    absorb(denseNetDisplay.probabilities);
   } else {
     const fromAnalyze = denseNetResponseFromAnalyzeModel3(analysis);
     if (fromAnalyze?.success && fromAnalyze.probabilities) {
-      absorbProbs(agg, fromAnalyze.probabilities);
+      absorb(fromAnalyze.probabilities);
     }
   }
-  return agg;
+
+  return scores;
 }
 
 function upsertNoticeRow(map: Map<string, AiNoticeFindingRow>, row: AiNoticeFindingRow) {
@@ -151,8 +107,8 @@ function upsertNoticeRow(map: Map<string, AiNoticeFindingRow>, row: AiNoticeFind
 }
 
 /**
- * Notable findings for the AI notice card and downstream sections: fusion scores above {@link FINDINGS_CONFIDENCE_THRESHOLD}
- * **or** any pipeline model class probability strictly above 50%, with bacterial vs viral pneumonia as separate rows when present.
+ * Notable findings for the AI notice card: fusion scores above threshold
+ * or any pipeline model class probability strictly above 50%.
  */
 export function getMergedNotableFindingsForAiNotice(
   predictions: Predictions,
@@ -162,18 +118,17 @@ export function getMergedNotableFindingsForAiNotice(
   const byKey = new Map<string, AiNoticeFindingRow>();
 
   for (const { label, score } of getNotableFindings(predictions)) {
-    const noticeKind: PneumoniaNoticeKind = "default";
     upsertNoticeRow(byKey, {
       id: `fusion-${label}`,
       label,
       score,
-      noticeKind,
+      noticeKind: "default",
     });
   }
 
-  const agg = collectModelNoticeAggregate(analysis, denseNetDisplay);
-
-  for (const [label, score] of Array.from(agg.other.entries())) {
+  for (const [label, score] of Array.from(
+    collectModelNoticeScores(analysis, denseNetDisplay).entries(),
+  )) {
     upsertNoticeRow(byKey, {
       id: `model-${label}`,
       label,

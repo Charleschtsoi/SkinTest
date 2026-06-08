@@ -56,30 +56,15 @@ export function formatClassifierSummaryLine(
 
 export type ModelResultTone = "positive" | "caution" | "muted";
 
-/** Semantic color for pipeline headlines (aligned with Model 6 COPD styling). */
+/** Semantic color for pipeline headlines (skin lesion labels). */
 export function modelResultToneFromPrediction(prediction: string | undefined | null): ModelResultTone {
   const p = (prediction ?? "").trim();
   if (!p || p === "N/A" || p.toLowerCase() === "unavailable") return "muted";
   const lower = p.toLowerCase();
-  if (
-    lower === "normal" ||
-    (lower.includes("low") && lower.includes("copd")) ||
-    lower.includes("low copd") ||
-    lower.includes("standard risk")
-  ) {
+  if (lower === "normal" || lower.includes("benign")) {
     return "positive";
   }
-  if (
-    (lower.includes("high") && lower.includes("copd")) ||
-    lower.includes("high copd") ||
-    lower.includes("elevated") ||
-    lower.includes("pneumonia") ||
-    lower.includes("covid") ||
-    lower.includes("opacity") ||
-    lower.includes("infiltration") ||
-    lower.includes("viral") ||
-    lower.includes("bacterial")
-  ) {
+  if (lower.includes("melanoma") || lower.includes("carcinoma") || lower.includes("bcc")) {
     return "caution";
   }
   return "caution";

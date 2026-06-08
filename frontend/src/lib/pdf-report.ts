@@ -425,10 +425,12 @@ export async function buildEducationReportPdf(input: BuildEducationReportPdfInpu
     });
   }
 
-  sectionTitle(input.doctorQuestionsTitle);
-  input.doctorQuestions.forEach((q, i) => {
-    writeWrapped(`${i + 1}. ${q}`);
-  });
+  if (input.doctorQuestions.length > 0 && input.doctorQuestionsTitle.trim()) {
+    sectionTitle(input.doctorQuestionsTitle);
+    input.doctorQuestions.forEach((q, i) => {
+      writeWrapped(`${i + 1}. ${q}`);
+    });
+  }
 
   if (input.warnings.length > 0) {
     sectionTitle(input.warningsTitle);

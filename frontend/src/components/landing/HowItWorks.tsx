@@ -1,6 +1,6 @@
 "use client";
 
-import { Stethoscope, Upload, MessageCircle } from "lucide-react";
+import { Camera, Upload, ScanSearch } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useI18n } from "@/hooks/useI18n";
 
@@ -11,7 +11,7 @@ export function HowItWorks() {
       step: 1,
       title: t("landing.how.step1.title"),
       body: t("landing.how.step1.body"),
-      icon: Stethoscope,
+      icon: Camera,
     },
     {
       step: 2,
@@ -23,7 +23,7 @@ export function HowItWorks() {
       step: 3,
       title: t("landing.how.step3.title"),
       body: t("landing.how.step3.body"),
-      icon: MessageCircle,
+      icon: ScanSearch,
     },
   ] as const;
   return (

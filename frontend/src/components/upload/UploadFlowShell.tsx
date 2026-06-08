@@ -3,7 +3,6 @@
 import { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { warmBackend } from "@/lib/backend-warmup";
-import { DoctorGateQuestion } from "@/components/upload/DoctorGateQuestion";
 import { useAppMotion } from "@/lib/app-motion";
 import { PrivacyNotice } from "@/components/upload/PrivacyNotice";
 import { ImageUploader } from "@/components/upload/ImageUploader";
@@ -11,13 +10,11 @@ import { useAppStore } from "@/store/useAppStore";
 import { cn } from "@/lib/utils";
 import { useI18n } from "@/hooks/useI18n";
 
-function StepPanel({ step }: { step: 1 | 2 | 3 }) {
+function StepPanel({ step }: { step: 1 | 2 }) {
   switch (step) {
     case 1:
-      return <DoctorGateQuestion />;
-    case 2:
       return <PrivacyNotice />;
-    case 3:
+    case 2:
       return <ImageUploader />;
     default:
       return null;
@@ -29,13 +26,11 @@ export function UploadFlowShell() {
   const { stepTransition } = useAppMotion();
   const step = useAppStore((s) => s.uploadFlowStep);
   const setUploadFlowStep = useAppStore((s) => s.setUploadFlowStep);
-  const doctorReviewed = useAppStore((s) => s.doctorReviewed);
   const educationalNotDiagnosticAck = useAppStore((s) => s.educationalNotDiagnosticAck);
 
   const steps = [
     { n: 1 as const, label: t("upload.step1") },
     { n: 2 as const, label: t("upload.step2") },
-    { n: 3 as const, label: t("upload.step3") },
   ];
 
   useEffect(() => {
@@ -43,15 +38,14 @@ export function UploadFlowShell() {
   }, []);
 
   useEffect(() => {
-    if (educationalNotDiagnosticAck && step >= 3) {
+    if (educationalNotDiagnosticAck && step >= 2) {
       warmBackend();
     }
   }, [educationalNotDiagnosticAck, step]);
 
   const canAccessStep = (target: (typeof steps)[number]["n"]): boolean => {
     if (target === 1) return true;
-    if (target === 2) return doctorReviewed !== null;
-    return doctorReviewed !== null && educationalNotDiagnosticAck;
+    return educationalNotDiagnosticAck;
   };
 
   return (

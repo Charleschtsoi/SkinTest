@@ -5,13 +5,16 @@ export type { FindingLabel };
 /** Per-condition model scores (educational / technical, not a diagnosis). */
 export type Predictions = Record<FindingLabel, number>;
 
-export type PneumoniaNoticeKind = "default" | "pneumonia_bacterial" | "pneumonia_viral";
+export type SkinNoticeKind = "default";
+
+/** @deprecated Use `SkinNoticeKind` */
+export type PneumoniaNoticeKind = SkinNoticeKind;
 
 export interface AiNoticeFindingRow {
   id: string;
   label: FindingLabel;
   score: number;
-  noticeKind: PneumoniaNoticeKind;
+  noticeKind: SkinNoticeKind;
 }
 
 export interface GradcamResult {
@@ -107,7 +110,7 @@ export interface GateDecision {
 
 /** Model 1 row shape: 3-class ResNet-50 labels from backend when neural runs (UI type name is legacy). */
 export interface StageBinaryResult {
-  label: "Pneumonia" | "Normal" | "Pneumonia-Bacteria" | "Pneumonia-Virus";
+  label: "Melanoma" | "Basal Cell Carcinoma" | "Benign Nevus" | "Normal";
   confidence: number;
   model_name?: string;
   /** Base64 PNG Grad-CAM overlay (PyTorch ResNet50) when backend provides it. */
@@ -132,7 +135,7 @@ export type Model2TabularResult = Model6TabularResult;
 
 /** Legacy multi-class row (ResNet-152V2 labels). */
 export interface StageMultiClassResult {
-  label: "Normal" | "Lung Opacity" | "Viral Pneumonia" | "Other";
+  label: "Melanoma" | "Basal Cell Carcinoma" | "Benign Nevus" | "Normal" | "Other";
   confidence: number;
   probabilities?: Record<string, number>;
 }

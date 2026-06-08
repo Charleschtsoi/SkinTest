@@ -78,194 +78,117 @@ def _resolve_insights_fallback_locale(locale: str | None) -> str:
 
 EDUCATIONAL_INSIGHTS_FALLBACK_BY_LOCALE: dict[str, dict[str, list[dict[str, str]]]] = {
     "en": {
-        "Pneumonia": [
+        "Melanoma": [
             {
-                "title": "What this pattern may indicate",
+                "title": "What melanoma patterns may mean",
                 "text": (
-                    "Pneumonia on chest X-ray often shows areas where air spaces look filled or inflamed. "
-                    "Your clinician combines imaging with symptoms, exams, and sometimes blood tests or cultures—not AI scores alone."
+                    "Melanoma is a serious form of skin cancer that can arise from pigment-producing cells. "
+                    "AI may flag asymmetric, irregular, or darkly pigmented areas, but only dermoscopy and biopsy can confirm melanoma."
                 ),
                 "category": "overview",
             },
             {
-                "title": "Treatment and follow-up (general)",
+                "title": "Typical clinical pathway",
                 "text": (
-                    "Care may include antibiotics for suspected bacterial infection, rest and fluids, oxygen if needed, "
-                    "and repeat imaging when symptoms persist. Vaccines (influenza, pneumococcal, COVID-19 where appropriate) "
-                    "help prevent some pneumonias."
+                    "Dermatologists often use the ABCDE criteria, dermoscopy, and serial photography. "
+                    "Suspicious lesions may be biopsied. Early specialist review improves outcomes."
                 ),
-                "category": "treatment",
+                "category": "follow_up",
             },
         ],
-        "Lung Opacity": [
+        "Basal Cell Carcinoma": [
             {
-                "title": "Understanding lung opacity",
+                "title": "Understanding BCC patterns",
                 "text": (
-                    "Opacity means part of the lung looks denser or hazier than normal. Causes range from infection and fluid "
-                    "to inflammation or scarring; radiology wording and your symptoms guide next steps."
+                    "Basal cell carcinoma is the most common skin cancer, often appearing as a pearly bump or scaly patch. "
+                    "AI scores highlight visual patterns only; clinical examination is required."
                 ),
                 "category": "overview",
             },
             {
-                "title": "Typical management themes",
+                "title": "General management themes",
                 "text": (
-                    "Doctors may order follow-up X-rays, CT, or labs depending on context. Treatment targets the underlying "
-                    "cause—only your care team should decide what applies to you."
+                    "Treatment options may include surgical excision, Mohs surgery, or topical therapies depending on subtype and location. "
+                    "Only your dermatologist can recommend what applies to you."
                 ),
-                "category": "treatment",
+                "category": "follow_up",
             },
         ],
-        "COVID-19": [
+        "Benign Nevus": [
             {
-                "title": "Imaging and COVID-19",
+                "title": "Benign nevus (mole) context",
                 "text": (
-                    "AI may flag patterns seen with viral pneumonia, including COVID-19. Imaging supports assessment "
-                    "but does not replace PCR/antigen testing or clinical diagnosis."
-                ),
-                "category": "overview",
-            },
-            {
-                "title": "Care and prevention context",
-                "text": (
-                    "Management ranges from home monitoring to antivirals in eligible high-risk patients and hospital care "
-                    "when severe. Check official health-authority guidance on vaccines and variants with your clinician."
-                ),
-                "category": "treatment",
-            },
-        ],
-        "Pleural_Thickening": [
-            {
-                "title": "Pleural thickening on X-ray",
-                "text": (
-                    "Thickening along the lung lining can reflect prior inflammation, asbestos exposure, or other causes. "
-                    "Many cases are chronic and stable; new or worsening thickening may warrant CT and specialist review."
+                    "Benign nevi are common pigmented lesions. AI may classify a mole as benign-appearing, "
+                    "but any changing, bleeding, or symptomatic mole should still be reviewed in person."
                 ),
                 "category": "overview",
             },
         ],
     },
     "zh-Hant": {
-        "Pneumonia": [
+        "Melanoma": [
             {
-                "title": "影像可能代表什麼",
+                "title": "黑色素瘤模式可能代表什麼",
                 "text": (
-                    "胸肺 X 光上的肺炎常見表現是肺泡區域較實或發炎。醫師會結合症狀、理學檢查，"
-                    "有時加上血液或培養檢查，而不只依賴 AI 分數。"
+                    "黑色素瘤是較嚴重的皮膚癌。AI 可能標示不對稱、邊界不規則或色素異常的區域，"
+                    "但只有皮膚鏡與活檢能確認診斷。"
                 ),
                 "category": "overview",
             },
             {
-                "title": "治療與跟進（一般說明）",
-                "text": (
-                    "視病因而定，可能包括抗生素、休息與補充水分、需要時的氧氣治療，以及症狀持續時的覆照影像。"
-                    "流感、肺炎鏈球菌、COVID-19 等疫苗有助降低部分肺炎風險。"
-                ),
-                "category": "treatment",
+                "title": "常見臨床路徑",
+                "text": "皮膚科醫師常使用 ABCDE 準則、皮膚鏡與追蹤攝影；可疑病灶可能需活檢。",
+                "category": "follow_up",
             },
         ],
-        "Lung Opacity": [
+        "Basal Cell Carcinoma": [
             {
-                "title": "肺野不透明度的意義",
+                "title": "基底細胞癌模式",
                 "text": (
-                    "表示肺部部分區域在 X 光上較濃或較霧，可能與感染、積液、發炎或疤痕等有關，"
-                    "需配合放射科報告與臨床情況判斷。"
+                    "基底細胞癌是最常見的皮膚癌，常呈珍珠樣突起或鱗狀斑塊。"
+                    "AI 分數僅供教育參考，需臨床檢查確認。"
                 ),
                 "category": "overview",
             },
-            {
-                "title": "常見處理方向",
-                "text": "醫師可能安排覆照、電腦掃描或化驗；治療針對真正病因，請以你的主診醫師計劃為準。",
-                "category": "treatment",
-            },
         ],
-        "COVID-19": [
+        "Benign Nevus": [
             {
-                "title": "與 COVID-19 相關的影像表現",
-                "text": (
-                    "AI 可能標示與病毒性肺炎（包括 COVID-19）相關的模式。"
-                    "影像有助評估，但不能取代 PCR/抗原檢測或臨床診斷。"
-                ),
-                "category": "overview",
-            },
-            {
-                "title": "照護與預防背景",
-                "text": (
-                    "由居家監測到高風險族群的抗病毒治療，以及需要時的住院支援。"
-                    "疫苗與公共衛生建議會更新，請向醫護人員及官方來源查證。"
-                ),
-                "category": "treatment",
-            },
-        ],
-        "Pleural_Thickening": [
-            {
-                "title": "肋膜增厚",
-                "text": (
-                    "肺膜沿線增厚可能與既往發炎、石棉暴露等有關；許多情況屬慢性且穩定，"
-                    "若為新出現或惡化，醫師可能安排 CT 或專科評估。"
-                ),
+                "title": "良性痣背景",
+                "text": "良性痣很常見。任何變化、出血或有症狀的痣仍應由醫師面診評估。",
                 "category": "overview",
             },
         ],
     },
     "zh-Hans": {
-        "Pneumonia": [
+        "Melanoma": [
             {
-                "title": "影像可能代表什么",
+                "title": "黑色素瘤模式可能代表什么",
                 "text": (
-                    "胸片上的肺炎常表现为肺泡区域较实或发炎。医生会结合症状、查体，"
-                    "有时加上血液或培养检查，而不只依赖 AI 分数。"
+                    "黑色素瘤是较严重的皮肤癌。AI 可能标示不对称、边界不规则或色素异常的区域，"
+                    "但只有皮肤镜与活检能确认诊断。"
                 ),
                 "category": "overview",
             },
             {
-                "title": "治疗与随访（一般说明）",
-                "text": (
-                    "视病因而定，可能包括抗生素、休息与补液、需要时的氧疗，以及症状持续时的复查影像。"
-                    "流感、肺炎球菌、COVID-19 等疫苗有助于降低部分肺炎风险。"
-                ),
-                "category": "treatment",
+                "title": "常见临床路径",
+                "text": "皮肤科医生常使用 ABCDE 准则、皮肤镜与追踪摄影；可疑病灶可能需活检。",
+                "category": "follow_up",
             },
         ],
-        "Lung Opacity": [
+        "Basal Cell Carcinoma": [
             {
-                "title": "肺野不透明度的意义",
+                "title": "基底细胞癌模式",
                 "text": (
-                    "表示肺部部分区域在 X 光上较浓或较雾，可能与感染、积液、炎症或瘢痕等有关，"
-                    "需结合放射科报告与临床情况判断。"
+                    "基底细胞癌是最常见的皮肤癌，常呈珍珠样突起或鳞状斑块。"
+                    "AI 分数仅供教育参考，需临床检查确认。"
                 ),
                 "category": "overview",
             },
-            {
-                "title": "常见处理方向",
-                "text": "医生可能安排复查、CT 或化验；治疗针对真正病因，请以你的主治医生方案为准。",
-                "category": "treatment",
-            },
         ],
-        "COVID-19": [
+        "Benign Nevus": [
             {
-                "title": "与 COVID-19 相关的影像表现",
-                "text": (
-                    "AI 可能标示与病毒性肺炎（包括 COVID-19）相关的模式。"
-                    "影像有助于评估，但不能取代 PCR/抗原检测或临床诊断。"
-                ),
-                "category": "overview",
-            },
-            {
-                "title": "照护与预防背景",
-                "text": (
-                    "从居家监测到高风险人群的抗病毒治疗，以及需要时的住院支持。"
-                    "疫苗与公共卫生建议会更新，请向医护人员及官方来源查证。"
-                ),
-                "category": "treatment",
-            },
-        ],
-        "Pleural_Thickening": [
-            {
-                "title": "胸膜增厚",
-                "text": (
-                    "肺膜沿线增厚可能与既往炎症、石棉暴露等有关；许多情况属慢性且稳定，"
-                    "若为新出现或恶化，医生可能安排 CT 或专科评估。"
-                ),
+                "title": "良性痣背景",
+                "text": "良性痣很常见。任何变化、出血或有症状的痣仍应由医师面诊评估。",
                 "category": "overview",
             },
         ],
@@ -2255,30 +2178,12 @@ def _build_educator_ml_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "Model 5 (DenseNet-121 H5)": _format_vision_model_for_llm(
             "DenseNet-121 H5", payload.get("model5_densenet")
         ),
-        "Model 6 (Clinical COPD tabular)": _format_vision_model_for_llm(
-            "model6_removed", None
-        ),
     }
 
 
 def _format_patient_profile_for_educator(patient_data: dict[str, Any]) -> str:
-    smoking_status = patient_data.get(
-        "smoking_status", patient_data.get("smoking", "Unknown")
-    )
-    fever_val = patient_data.get("fever")
-    if fever_val is None:
-        fever_line = "Unknown"
-    else:
-        fever_line = "Yes" if fever_val else "No"
-    breathing = patient_data.get("breathing_difficulty", "Unknown")
-    cough_days = patient_data.get("cough_duration_days", "Unknown")
-    return (
-        f"- Age: {patient_data.get('age', 'Unknown')}\n"
-        f"- Fever: {fever_line}\n"
-        f"- Cough Duration: {cough_days} days\n"
-        f"- Smoking Status: {smoking_status}\n"
-        f"- Breathing Difficulty: {breathing}"
-    )
+    void = patient_data
+    return "Skin screening uses the uploaded photo only; no clinical questionnaire is collected."
 
 
 def _generate_llm_summary(
@@ -2682,13 +2587,6 @@ def _build_pipeline_outputs(
 
     clinical_risk_payload = None
     model4 = None
-    smoking = None
-    breathing_difficulty = None
-    if isinstance(questionnaire_data, dict):
-        patient_data = questionnaire_data.get("patient_data")
-        if isinstance(patient_data, dict):
-            smoking = patient_data.get("smoking")
-            breathing_difficulty = patient_data.get("breathing_difficulty")
     if not requires_questionnaire:
         if gate_route == "early_stop":
             severity = "low"
@@ -2707,9 +2605,6 @@ def _build_pipeline_outputs(
                 severity = "low"
                 risk_level = "low"
                 recovery_outlook = "favorable"
-            if smoking in {"former", "current"} or breathing_difficulty in {"mild", "severe"}:
-                recovery_outlook = "guarded"
-
         clinical_risk_payload = {
             "enabled": True,
             "severity": severity,
@@ -2719,33 +2614,16 @@ def _build_pipeline_outputs(
 
         imaging_label = model1_label if model1_pytorch_inference_ok else top_prediction
         summary_lines = [
-            f"Educational analysis suggests {imaging_label} with top imaging finding "
+            f"Educational skin screening suggests {imaging_label} with top finding "
             f"{top_prediction} ({top_confidence:.2f})."
         ]
-        if model6_tabular_inference_ok and model6_label:
-            summary_lines.append(f"Clinical intake screening: {model6_label}.")
-        patient_data = questionnaire_data.get("patient_data") if isinstance(questionnaire_data, dict) else None
-        if isinstance(patient_data, dict):
-            if patient_data.get("fever") is True:
-                summary_lines.append("Questionnaire indicates reported fever.")
-            cough_days = patient_data.get("cough_duration_days")
-            if isinstance(cough_days, int):
-                summary_lines.append(f"Reported cough duration: {cough_days} days.")
-            if smoking == "former":
-                summary_lines.append("Smoking history: former smoker.")
-            elif smoking == "current":
-                summary_lines.append("Smoking history: current smoker.")
-            if breathing_difficulty == "mild":
-                summary_lines.append("Breathing difficulty reported as mild.")
-            elif breathing_difficulty == "severe":
-                summary_lines.append("Breathing difficulty reported as severe.")
 
         model4 = {
             "summary": " ".join(summary_lines),
             "recommended_actions": [
-                "Review this result with a licensed radiologist.",
-                "Correlate with patient symptoms and vitals.",
-                "Repeat imaging or follow-up per clinical protocol if needed.",
+                "Discuss this photo with a licensed dermatologist.",
+                "Consider dermoscopy or in-person examination for suspicious lesions.",
+                "Monitor for ABCDE changes and seek care promptly if a mole evolves.",
             ],
             "disclaimer": (
                 "This is an educational synthesis and not a medical diagnosis."
@@ -2807,12 +2685,8 @@ def _build_pipeline_outputs(
     provenance_flat = {
         "model1_result": "model" if model1_pytorch_inference_ok else "rules",
         "model2_result": "model" if model2_vision_inference_ok else "rules",
-        "model6_result": "model" if model6_tabular_inference_ok else "rules",
         "model3_result": model3_flat_result,
-        "clinical_risk_result": "rules" if clinical_risk_payload else "skipped",
-        "gate_decision": "rules",
         "findings": "rules",
-        "doctor_questions": "rules",
         "report_summary": "rules",
         "anatomy_guide": "static",
     }

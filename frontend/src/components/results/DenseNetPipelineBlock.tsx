@@ -5,12 +5,12 @@ import { ProbabilityBarList } from "@/components/results/ProbabilityBarList";
 import { useI18n } from "@/hooks/useI18n";
 import type { DenseNetResponse } from "@/types";
 
-const CLASS_ORDER = ["COVID-19", "Normal", "Pneumonia"] as const;
+const CLASS_ORDER = ["Melanoma", "Basal Cell Carcinoma", "Benign Nevus"] as const;
 
 function labelKeyForClass(c: string): string {
-  if (c === "Normal") return "densenet.label.normal";
-  if (c === "COVID-19") return "densenet.label.covid";
-  if (c === "Pneumonia") return "densenet.label.pneumonia";
+  if (c === "Benign Nevus" || c === "Normal") return "densenet.label.normal";
+  if (c === "Melanoma") return "stage.Melanoma";
+  if (c === "Basal Cell Carcinoma") return "stage.Basal Cell Carcinoma";
   return c;
 }
 

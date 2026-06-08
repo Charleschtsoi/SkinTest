@@ -89,26 +89,19 @@ export function hybridRunModeBannerMessage(
 ): string {
   const m1 = classifierSourceIsModel(provenance, "model1");
   const m2Vision = classifierSourceIsModel(provenance, "model2");
-  const m6Copd = classifierSourceIsModel(provenance, "model6");
   if (m1 && m2Vision) {
     return "";
   }
   if (m1 && !m2Vision) {
     return t(
       "results.provenance.hybridBanner.model1Only",
-      "Model 1 used a live classifier. Model 2 (ResNet-152V2) did not run as a loaded neural model on this run. Findings, attention overlay, and doctor-question hints may include rule-based scaffolding.",
+      "Model 1 used a live classifier. Model 2 did not run as a loaded neural model on this run. Findings and attention overlay may include rule-based scaffolding.",
     );
   }
   if (!m1 && m2Vision) {
     return t(
       "results.provenance.hybridBanner.model2Only",
-      "Model 2 (ResNet-152V2) ran on this upload. Model 1 did not run as a loaded vision classifier. Findings, attention overlay, and doctor-question hints may include rule-based scaffolding.",
-    );
-  }
-  if (!m1 && !m2Vision && m6Copd) {
-    return t(
-      "results.provenance.hybridBanner.model6Only",
-      "Model 6 (COPD tabular) ran on this upload. Vision classifiers did not run as loaded neural models.",
+      "Model 2 ran on this upload. Model 1 did not run as a loaded classifier. Findings and attention overlay may include rule-based scaffolding.",
     );
   }
   return t(
@@ -349,7 +342,7 @@ function visionClassifierImpactRow(
 
 /**
  * Classifier rows in the same order as the results pipeline card:
- * 1 → 2 → 3 → 4 → 5 → 6 (COPD) → clinical risk.
+ * 1 → 2 → 3 → 4 → 5 vision classifiers.
  */
 export function pipelineOrderedModelImpactRows(
   provenance: AnalyzeProvenance | undefined,
@@ -408,39 +401,11 @@ export function pipelineOrderedModelImpactRows(
   );
   if (m5) rows.push(m5);
 
-  const copd = provenance?.model6;
-  if (copd) {
-    rows.push(
-      stageProvenanceImpactRow(
-        copd,
-        "results.provenance.impact.model6",
-        "Model 6 — Chronic Lung Risk (COPD)",
-        t,
-      ),
-    );
-  } else if (provenance) {
-    const flat = flatProvenanceSectionRow(provenance, "model6_result", t);
-    if (flat) rows.push(flat);
-  }
-
-  const cr = provenance?.clinical_risk;
-  if (cr) {
-    const src = normalizeToBadgeSource(cr.source);
-    rows.push({
-      section: t("results.model3Risk"),
-      source: src ? t(`results.provenance.badge.${src}`, src) : t("results.provenance.sourceUnknown"),
-      sourceKind: src,
-      status: statusLabel(cr.status, t),
-    });
-  }
-
   return rows;
 }
 
 const FLAT_IMPACT_TAIL_KEYS: FlatProvenanceKey[] = [
-  "gate_decision",
   "findings",
-  "doctor_questions",
   "report_summary",
   "anatomy_guide",
 ];
@@ -468,7 +433,7 @@ export function flatPipelineImpactRows(
   return [...pipelineOrderedModelImpactRows(provenance, analysis, t), ...tail];
 }
 
-/** X-ray expansion slots — separate from `provenance.model4` (report synthesis). */
+/** Vision expansion slots — separate from `provenance.model4` (report synthesis). */
 export function visionExpansionImpactRows(
   analysis:
     | Pick<AnalyzeSuccessResponse, "model2" | "model4_swint" | "model5_densenet">
@@ -527,17 +492,6 @@ export function nestedProvenanceImpactRows(
     section: t("results.impact.findingsSection"),
     source: findingsSrc ? t(`results.provenance.badge.${findingsSrc}`, findingsSrc) : t("results.provenance.sourceUnknown"),
     sourceKind: findingsSrc,
-    status: t("results.impact.statusOk"),
-  });
-
-  const dq =
-    normalizeToBadgeSource(provenance.doctor_questions) ??
-    normalizeToBadgeSource(provenance.clinical_risk?.source) ??
-    "rule";
-  rows.push({
-    section: t("results.impact.questionsSection"),
-    source: t(`results.provenance.badge.${dq}`, dq),
-    sourceKind: dq,
     status: t("results.impact.statusOk"),
   });
 

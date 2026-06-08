@@ -107,7 +107,7 @@ export function ImageUploader() {
     [t],
   );
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+  const { getRootProps, getInputProps, isDragActive, open } = useDropzone({
     onDrop,
     onDropRejected,
     accept: ACCEPT as unknown as Record<string, string[]>,
@@ -206,12 +206,32 @@ export function ImageUploader() {
             isDragActive && "border-primary bg-primary/5",
           )}
         >
-          <input {...getInputProps()} />
+          <input {...getInputProps({ capture: "environment" })} />
           <Upload className="mb-3 h-9 w-9 text-muted-foreground" aria-hidden />
           <p className="text-sm font-medium">{t("upload.drop.prompt")}</p>
           <p className="mt-2 text-sm text-muted-foreground">{t("upload.drop.note")}</p>
         </div>
       </motion.div>
+
+      <div className="rounded-lg border bg-muted/30 px-4 py-3 text-sm text-muted-foreground">
+        <p className="font-medium text-foreground">{t("upload.capture.tipsTitle")}</p>
+        <ul className="mt-2 list-inside list-disc space-y-1">
+          <li>{t("upload.capture.tip1")}</li>
+          <li>{t("upload.capture.tip2")}</li>
+          <li>{t("upload.capture.tip3")}</li>
+        </ul>
+        <div className="mt-3 flex flex-wrap gap-2">
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            disabled={showPipelineLoader}
+            onClick={() => open()}
+          >
+            {t("upload.capture.chooseGallery")}
+          </Button>
+        </div>
+      </div>
 
       {imageFile && (
         <div className="space-y-4 rounded-xl border bg-card p-4 shadow-sm">
