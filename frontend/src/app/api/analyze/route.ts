@@ -92,7 +92,7 @@ export async function POST(req: Request) {
     const payload = await parseJsonBody(res);
 
     if (!payload) {
-      console.error("[LungLens /api/analyze proxy] Backend returned empty or invalid JSON", {
+      console.error("[SkinTest /api/analyze proxy] Backend returned empty or invalid JSON", {
         status: res.status,
         backendBase: base,
         path: "/api/v1/analyze",
@@ -119,7 +119,7 @@ export async function POST(req: Request) {
       const normalized = normalizeSuccessPayload(payload);
       if (!normalized) {
         console.error(
-          "[LungLens /api/analyze proxy] Response failed normalization (e.g. missing heatmap). Check backend shape vs route.ts.",
+          "[SkinTest /api/analyze proxy] Response failed normalization (e.g. missing heatmap). Check backend shape vs route.ts.",
           { backendBase: base },
         );
         return NextResponse.json(
@@ -129,14 +129,14 @@ export async function POST(req: Request) {
       }
       return NextResponse.json(normalized, { status: res.status });
     }
-    console.error("[LungLens /api/analyze proxy] Backend error response", {
+    console.error("[SkinTest /api/analyze proxy] Backend error response", {
       status: res.status,
       backendBase: base,
       bodyKeys: Object.keys(payload),
     });
     return NextResponse.json(payload, { status: res.status });
   } catch (e) {
-    console.error("[LungLens /api/analyze proxy] Network or unexpected error", e, {
+    console.error("[SkinTest /api/analyze proxy] Network or unexpected error", e, {
       backendBase: base,
     });
     const isAbort = e instanceof Error && e.name === "AbortError";

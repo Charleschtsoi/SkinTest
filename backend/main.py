@@ -427,6 +427,10 @@ MODEL2_VISION_H5_PATH = (
     or os.getenv("H5_MODEL_PATH", "models/resnet152v2_lung_disease_final.h5")
 ).strip()
 
+# Optional private-source for Model 2 weights.
+# When set, backend downloads the object to MODEL2_VISION_H5_PATH at startup (if the local file is missing).
+MODEL2_VISION_H5_GCS_URI = (os.getenv("MODEL2_VISION_H5_GCS_URI") or "").strip()
+
 ENABLE_MODEL6_TABULAR = False
 MODEL6_TABULAR_LABELS = ()
 # Edward ResNet-152V2 (legacy H5_MODEL2 / model2_vision_h5): 3 classes, index order per Edward's training.
@@ -1333,6 +1337,56 @@ def _model2_vision_h5_path_diagnostics() -> dict[str, Any]:
         "exists": exists,
         "size_bytes": size_bytes,
     }
+
+
+def _parse_gs_uri(gs_uri: str) -> tuple[str, str]:
+    """Parse gs://bucket/path/to/object.txt -> (bucket, object_path)."""
+    if not gs_uri.startswith("gs://"):
+        raise ValueError(f"Invalid GCS URI (expected gs://...): {gs_uri!r}")
+    rest = gs_uri[len("gs://") :]
+    bucket, _, blob_path = rest.partition("/")
+    if not bucket or not blob_path:
+        raise ValueError(f"Invalid GCS URI (missing bucket/object): {gs_uri!r}")
+    return bucket, blob_path
+
+
+def _maybe_download_model2_vision_h5_from_gcs() -> None:
+    """Download enabled Model 2 weights from private GCS if configured.
+
+    This runs at startup (before model loading) to keep weights out of git and out of the frontend.
+    """
+
+    if not ENABLE_MODEL2_VISION_H5:
+        return
+    if not MODEL2_VISION_H5_GCS_URI:
+        return
+
+    diag = _model2_vision_h5_path_diagnostics()
+    if diag["exists"]:
+        return
+
+    abs_path = diag["absolute_path"]
+    os.makedirs(os.path.dirname(abs_path), exist_ok=True)
+
+    try:
+        from google.cloud import storage  # type: ignore
+
+        bucket_name, blob_path = _parse_gs_uri(MODEL2_VISION_H5_GCS_URI)
+        client = storage.Client()
+        bucket = client.bucket(bucket_name)
+        blob = bucket.blob(blob_path)
+
+        logger.info(
+            "Downloading Model 2 vision H5 from GCS: gs_uri=%r -> %r",
+            MODEL2_VISION_H5_GCS_URI,
+            abs_path,
+        )
+        blob.download_to_filename(abs_path)
+    except Exception as exc:
+        # Keep startup resilient in degraded mode; FAIL_STARTUP_ON_MISSING_ENABLED_MODELS will decide later.
+        logger.exception(
+            "Model 2 GCS download failed; continuing startup. error=%s", str(exc)
+        )
 
 
 def _missing_enabled_model_files() -> list[str]:
@@ -3221,6 +3275,7 @@ async def healthz() -> dict[str, str]:
 @app.on_event("startup")
 async def _startup_load_models() -> None:
     _load_model1_pytorch()
+    _maybe_download_model2_vision_h5_from_gcs()
     _load_model2_vision_h5()
     _load_densenet121()
     _load_swint_model4()

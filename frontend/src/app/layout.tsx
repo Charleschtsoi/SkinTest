@@ -11,8 +11,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "LungLens — Chest X-ray education",
-  description: "Educational companion for chest X-rays. Not a medical device.",
+  title: "SkinTest — Skin photo education",
+  description: "Educational companion for skin lesion photos. Not a medical device.",
 };
 
 export default function RootLayout({

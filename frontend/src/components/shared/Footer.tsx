@@ -18,7 +18,7 @@ export function Footer() {
           </div>
         </div>
         <p className="mt-6 text-center text-[11px] text-muted-foreground/90">
-          © {new Date().getFullYear()} LungLens · {t("footer.copy")}
+          © {new Date().getFullYear()} SkinTest · {t("footer.copy")}
         </p>
       </div>
     </footer>

@@ -91,7 +91,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json(payload, { status: res.status });
   } catch (e) {
-    console.error("[LungLens /api/gemini/health-check proxy] Network or unexpected error", e, {
+    console.error("[SkinTest /api/gemini/health-check proxy] Network or unexpected error", e, {
       backendBase: base,
     });
     const isAbort = e instanceof Error && e.name === "AbortError";

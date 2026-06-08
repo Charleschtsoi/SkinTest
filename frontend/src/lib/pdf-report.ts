@@ -18,7 +18,7 @@ export interface PdfPipelineSection {
 
 export interface BuildEducationReportPdfInput {
   filename: string;
-  /** Shown in the repeating page header (e.g. “LungLens Educational Report”). */
+  /** Shown in the repeating page header (e.g. “SkinTest Educational Report”). */
   reportHeaderTitle: string;
   generatedAtLabel: string;
   generatedAtValue: string;

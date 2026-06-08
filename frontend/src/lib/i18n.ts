@@ -9,7 +9,6 @@ const dictEn: Dict = {
   "nav.upload": "Upload",
   "nav.learn": "Learn",
   "nav.about": "About",
-  "nav.pitch": "Pitch",
   "nav.language": "Language",
   "lang.en": "EN",
   "lang.hant": "繁中",
@@ -17,31 +16,31 @@ const dictEn: Dict = {
 
   "footer.important": "Important",
   "footer.permanent":
-    "Permanent notice: LungLens is for education only. It does not diagnose disease, interpret your scan as a clinician would, or replace advice from your doctor or radiologist.",
+    "Permanent notice: SkinTest is for education only. It does not diagnose disease, interpret your scan as a clinician would, or replace advice from your doctor or dermatologist.",
   "footer.extra":
-    "LungLens does not replace professional medical judgment. For emergencies, call your local emergency number. Imaging interpretation belongs to your licensed care team.",
+    "SkinTest does not replace professional medical judgment. For emergencies, call your local emergency number. Imaging interpretation belongs to your licensed care team.",
   "footer.copy": "Educational use only",
 
-  "landing.hero.badge": "Chest X-ray education companion",
-  "landing.hero.title": "Understand Your Chest X-Ray",
+  "landing.hero.badge": "Skin photo education companion",
+  "landing.hero.title": "Understand Your Skin Photo",
   "landing.hero.subtitle":
-    "Already have your X-ray results? Let us help you learn what you're looking at.",
-  "landing.hero.ctaUpload": "Upload Your X-Ray",
-  "landing.hero.ctaLearn": "Learn about chest X-rays",
+    "Already have your skin photo results? Let us help you learn what you're looking at.",
+  "landing.hero.ctaUpload": "Upload Your Skin Photo",
+  "landing.hero.ctaLearn": "Learn about skin photos",
   "landing.hero.trust": "Your images never leave your device",
 
   "landing.how.title": "How it works",
   "landing.how.subtitle":
     "Three calm steps from your clinic's imaging to clearer understanding.",
-  "landing.how.step1.title": "Visit your doctor & get your X-ray",
+  "landing.how.step1.title": "Visit your clinician & discuss your skin photo",
   "landing.how.step1.body":
-    "Obtain your imaging through normal care-after a checkup, visit, or follow-up.",
+    "Obtain your skin-photo context through normal care-after a checkup, visit, or follow-up.",
   "landing.how.step2.title": "Upload your image for educational analysis",
   "landing.how.step2.body":
-    "Bring your JPEG or PNG here for anatomy context and plain-language guidance-not a diagnosis.",
+    "Bring your JPEG or PNG here for educational context and plain-language guidance-not a diagnosis.",
   "landing.how.step3.title": "Understand your results & ask smarter questions",
   "landing.how.step3.body":
-    "Explore what you're seeing and take better questions back to your clinician.",
+    "Explore what you're seeing and take smarter questions back to your clinician.",
   "landing.how.step": "Step",
 
   "landing.expect.title": "Set expectations",
@@ -53,31 +52,30 @@ const dictEn: Dict = {
   "landing.expect.does.2":
     "Show where an educational model focuses attention on your image",
   "landing.expect.does.3":
-    "Suggest questions you might ask your doctor or radiology team",
+    "Suggest questions you might ask your doctor or dermatology team",
   "landing.expect.does.4":
     "Support health literacy after you already have imaging from care",
-  "landing.expect.not.1": "Diagnose pneumonia, cancer, or any condition",
-  "landing.expect.not.2": "Replace a radiologist or your treating clinician",
+  "landing.expect.not.1": "Diagnose disease, cancer, or any condition",
+  "landing.expect.not.2": "Replace a clinician or your treating specialist",
   "landing.expect.not.3":
     "Tell you whether you need treatment or emergency care",
   "landing.expect.not.4":
     "Guarantee completeness or accuracy of any automated output",
 
-  "landing.explore.aria": "More about LungLens",
+  "landing.explore.aria": "More about SkinTest",
   "landing.disclaimer.title": "Medical disclaimer",
   "landing.disclaimer.p1":
-    "LungLens is an educational health-literacy tool only. It is not a medical device and does not provide a diagnosis, prognosis, or treatment advice. Always follow the guidance of a qualified healthcare professional and your official radiology report.",
+    "SkinTest is an educational health-literacy tool only. It is not a medical device and does not provide a diagnosis, prognosis, or treatment advice. Always follow the guidance of a qualified healthcare professional and any official clinical report.",
   "landing.disclaimer.p2":
     "If you have chest pain, trouble breathing, fever, or other concerning symptoms, seek appropriate medical care rather than relying on this website.",
 
-  "upload.title": "Upload your X-ray",
-  "upload.subtitle": "Upload your chest X-ray to begin the analysis pipeline.",
+  "upload.title": "Upload your skin photo",
+  "upload.subtitle": "Upload your skin photo to begin the analysis pipeline.",
   "upload.step1": "Doctor gate",
   "upload.step2": "Privacy",
   "upload.step3": "Upload",
   "upload.step4": "Questionnaire",
-  "upload.gate.title":
-    "Has a doctor already reviewed your chest X-ray?",
+  "upload.gate.title": "Has a clinician already reviewed your skin photo?",
   "upload.gate.desc":
     "We'll tailor disclaimers based on your answer. This app does not replace medical care.",
   "upload.gate.yes": "Yes",
@@ -92,13 +90,13 @@ const dictEn: Dict = {
   "upload.privacy.desc":
     "Your image is sent to this app's secure API for educational analysis. We don't use it for advertising. In a future version, processing may stay entirely on your device-check the latest privacy policy before uploading anything sensitive.",
   "upload.privacy.ack":
-    "I understand this is educational, not diagnostic. I will not use LungLens to decide whether I need treatment or emergency care.",
+    "I understand this is educational, not diagnostic. I will not use SkinTest to decide whether I need treatment or emergency care.",
   "upload.privacy.next": "Continue to upload",
 
   "upload.dicom.title": "Supported image formats",
   "upload.dicom.desc":
     "Upload JPEG, PNG, or WEBP files. Maximum file size: 10MB.",
-  "upload.drop.prompt": "Drag & drop your chest X-ray",
+  "upload.drop.prompt": "Drag & drop your skin photo",
   "upload.drop.note": "JPEG, PNG, or WEBP - up to 10MB",
   "upload.preview": "Preview",
   "upload.preview.noInline":
@@ -115,7 +113,7 @@ const dictEn: Dict = {
   "upload.pipeline.finalize": "Finalizing personalized report...",
   "upload.pipeline.progressLabel": "Analysis progress",
   "upload.analyzing":
-    "Our AI is studying your X-ray... (usually takes 5-10 seconds)",
+    "Our AI is studying your skin photo... (usually takes 5-10 seconds)",
   "upload.fileError.type": "Use JPEG, PNG, or WEBP.",
   "upload.fileError.size": "File is larger than 10MB.",
 
@@ -131,7 +129,7 @@ const dictEn: Dict = {
   "densenet.gradcam.caption": "Highlighted regions show where the model focused",
   "densenet.gradcam.unavailable":
     "Grad-CAM overlay was not returned for this run (class probabilities above are still shown).",
-  "densenet.alt.preview": "Uploaded chest X-ray preview",
+  "densenet.alt.preview": "Uploaded skin photo preview",
   "densenet.alt.gradcam": "DenseNet-121 Grad-CAM overlay",
   "densenet.caption.modelInputCrop":
     "Same 224×224 center crop fed to DenseNet-121 (matches Grad-CAM framing).",
@@ -159,7 +157,7 @@ const dictEn: Dict = {
   "upload.modeConfigured.api": "Configured to call backend API (final run mode depends on backend provenance).",
   "upload.geminiOptional.label": "Gemini API key (optional, for AI clinical summary)",
   "upload.geminiOptional.help":
-    "Optional. Stored only in this browser. Validated when you submit this form, then sent with your answers as gemini_api_key. LungLens servers do not retain it.",
+    "Optional. Stored only in this browser. Validated when you submit this form, then sent with your answers as gemini_api_key. SkinTest servers do not retain it.",
   "upload.geminiOptional.placeholder": "Paste your Google AI Studio key for BYOK",
 
   "results.loading": "Loading results...",
@@ -172,7 +170,7 @@ const dictEn: Dict = {
   "results.exportingPdf": "Exporting PDF...",
   "results.exportPdfError": "Failed to export PDF. Please try again.",
   "results.pdfGeneratedAt": "Generated at",
-  "results.pdfReportHeaderTitle": "LungLens Educational Report",
+  "results.pdfReportHeaderTitle": "SkinTest Educational Report",
   "results.llmEducatorTitle": "AI Clinical Advisor",
   "results.llmAdvisorTitle": "AI Clinical Advisor",
   "results.llmAiGeneratedBadge": "AI Generated",
@@ -183,12 +181,12 @@ const dictEn: Dict = {
   "results.llmLocaleUnavailable": "No educator summary text was returned for this language.",
   "results.llmHowGeneratedTrigger": "How this summary was produced",
   "results.llmHowGeneratedBodyEn":
-    "This section uses a large language model (LLM) on the server to turn model outputs and educational context into plain-language notes. It is for learning only: it does not diagnose disease, confirm that you are healthy, or replace your clinician or radiologist. Always discuss imaging with your care team.",
+    "This section uses a large language model (LLM) on the server to turn model outputs and educational context into plain-language notes. It is for learning only: it does not diagnose disease, confirm that you are healthy, or replace your clinician or dermatologist. Always discuss imaging with your care team.",
   "results.llmHowGeneratedBodyHant":
-    "此區塊由伺服端的大型語言模型（LLM）將模型輸出與教育脈絡整理成較易讀的文字，僅供學習參考：不作疾病診斷、不保證身體狀況，也不能取代醫師或放射科醫師。影像判讀請務必與醫護團隊討論。",
+    "此區塊由伺服端的大型語言模型（LLM）將模型輸出與教育脈絡整理成較易讀的文字，僅供學習參考：不作疾病診斷、不保證身體狀況，也不能取代醫師或皮膚科醫師。影像判讀請務必與醫護團隊討論。",
   "results.llmHowGeneratedBodyHans":
-    "此区块由服务器端的大型语言模型（LLM）将模型输出与教育语境整理成较易读的文字，仅供学习参考：不作疾病诊断、不保证身体状况，也不能替代医师或放射科医生。影像解读请务必与医护团队讨论。",
-  "results.pdfSection.visualXray": "Visual X-Ray Analysis",
+    "此区块由服务器端的大型语言模型（LLM）将模型输出与教育语境整理成较易读的文字，仅供学习参考：不作疾病诊断、不保证身体状况，也不能替代医师或皮膚科医生。影像解读请务必与医护团队讨论。",
+  "results.pdfSection.visualXray": "Visual Skin photo Analysis",
   "results.ensembleArchitecture.title": "View Ensemble Architecture Details",
   "results.ensembleArchitecture.colDisplayName": "Display Name",
   "results.ensembleArchitecture.colArchitecture": "Architecture",
@@ -212,13 +210,13 @@ const dictEn: Dict = {
   "results.poweredBy.model4": "Powered by Model 4 (Swin Transformer) • Trained by Charles",
   "results.poweredBy.model5": "Powered by Model 5 (DenseNet-121) • Trained by Charles",
   "results.poweredBy.model6": "Powered by Model 6 (Chronic Lung Risk / COPD) • Trained by Charles",
-  "results.pdfXray": "Original X-ray",
+  "results.pdfXray": "Original skin photo",
   "results.pdfAttentionMap": "AI attention map",
   "results.noDoctor":
-    "You indicated a doctor has not yet reviewed your X-ray. Please consult a healthcare professional for proper diagnosis.",
-  "results.tab.xray": "Your X-Ray",
+    "You indicated a doctor has not yet reviewed your skin photo. Please consult a healthcare professional for proper diagnosis.",
+  "results.tab.xray": "Your Skin photo",
   "results.tab.attention": "AI Attention Maps",
-  "results.attention.cardTitle": "X-Ray Heatmap Analysis",
+  "results.attention.cardTitle": "Skin photo Heatmap Analysis",
   "results.attention.cardDescription":
     "Grad-CAM overlays show where convolutional models focused on the lung field. Educational only—not a diagnosis.",
   "results.attention.overlayBadge": "Model 1 — ResNet-50 Attention",
@@ -226,13 +224,13 @@ const dictEn: Dict = {
   "results.attention.overlayBadgeGlobal": "AI Attention Map",
   "results.attention.edu.title": "Understanding the AI Attention Map",
   "results.attention.edu.intro":
-    "Advanced AI models can feel like a black box. To stay transparent, LungLens uses explainable AI (XAI) heatmaps so you can see what influenced the model's educational summary. This is not a diagnosis.",
+    "Advanced AI models can feel like a black box. To stay transparent, SkinTest uses explainable AI (XAI) heatmaps so you can see what influenced the model's educational summary. This is not a diagnosis.",
   "results.attention.edu.colorsTitle": "The colors",
   "results.attention.edu.colorsBody":
     "Red and yellow areas highlight the pixel patterns that most strongly influenced the model's educational output.",
   "results.attention.edu.purposeTitle": "The purpose",
   "results.attention.edu.purposeBody":
-    "This helps confirm the model is focusing on your lung fields rather than medical hardware, posture differences, or text on the X-ray film. You and your doctor can discuss what the AI highlighted together.",
+    "This helps confirm the model is focusing on your skin lesion area rather than medical hardware, posture differences, or text on the skin photo film. You and your doctor can discuss what the AI highlighted together.",
   "results.attention.edu.soloModelCamNote":
     "This overlay uses the same 224×224 center-cropped input the model analyzed. It may not match your full-resolution upload preview. Educational only.",
   "results.tab.anatomy": "Anatomy Guide",
@@ -240,7 +238,7 @@ const dictEn: Dict = {
     "Preview not available for this file. Export a PNG or JPEG if you need to view it here.",
   "results.noAttention": "Attention map not available for this run.",
   "results.attentionNote":
-    "Warmer or emphasized regions show where the model focused-this is not a finding list and not a substitute for a radiologist.",
+    "Warmer or emphasized regions show where the model focused-this is not a finding list and not a substitute for a dermatologist.",
   "results.attentionNoteSoloModelCam":
     "Shown: ResNet-50 Grad-CAM fused on the same 224×224 center-cropped input the model used (not overlaid on your full-resolution preview). Educational only.",
   "results.noAttentionReturned": "No attention map returned for this analysis.",
@@ -250,13 +248,13 @@ const dictEn: Dict = {
   "results.notice.pneumoniaBacterialTitle": "Pneumonia (bacterial pattern)",
   "results.notice.pneumoniaViralTitle": "Pneumonia (viral pattern)",
   "results.notice.pneumoniaBacterialBody":
-    "Educationally, bacterial pneumonia is often described as air-space consolidation (sometimes lobar). Pleural fluid may appear. Patterns overlap on X-ray and cannot confirm the germ alone. This is a model-score hint—your clinician interprets it with symptoms and tests.",
+    "Educationally, bacterial pneumonia is often described as skin pattern description (educational) (sometimes lobar). Skin fluid description (educational) may appear. Patterns overlap on skin photo and cannot confirm the germ alone. This is a model-score hint—your clinician interprets it with symptoms and tests.",
   "results.notice.pneumoniaViralBody":
     "Viral pneumonia is often described with more interstitial change and later patchy opacities. Ground-glass or small nodules may appear on advanced imaging but can resemble other pneumonias. Educational output only—not a substitute for viral testing or clinical judgment.",
   "results.anatomySub":
-    "Educational model scores-not a diagnosis. Only a radiologist can confirm what your film shows.",
+    "Educational model scores-not a diagnosis. Only a dermatologist can confirm what your film shows.",
   "results.noSignificant":
-    "The AI did not highlight any significant areas. This is generally consistent with a normal chest X-ray, but only a radiologist can confirm.",
+    "The AI did not highlight any significant areas. This is generally consistent with a normal skin photo, but only a dermatologist can confirm.",
   "results.attentionLevel": "Attention level",
   "results.low": "Low",
   "results.moderate": "Moderate",
@@ -271,7 +269,7 @@ const dictEn: Dict = {
   "results.learnMore": "Learn more",
   "results.learnMoreSub":
     "Short guides on the Learn hub-use them to prepare for conversations with your clinician.",
-  "results.basics": "Chest X-ray basics",
+  "results.basics": "Skin photo basics",
   "results.basicsSub":
     "Anatomy, common terms, and how to read your report at a high level",
   "results.topicSub": "Vocabulary, typical context, and questions for your visit",
@@ -281,7 +279,7 @@ const dictEn: Dict = {
   "anatomy.right-lung": "Right lung",
   "anatomy.diaphragm": "Diaphragm",
   "anatomy.desc.trachea":
-    "Midline airway. Deviation can have many causes your radiologist comments on.",
+    "Midline airway. Deviation can have many causes your dermatologist comments on.",
   "anatomy.desc.heart":
     "Cardiac silhouette-size and shape are interpreted with your clinical context.",
   "anatomy.desc.left-lung":
@@ -292,7 +290,7 @@ const dictEn: Dict = {
     "Domed muscle below the lungs. Position helps assess lung volume.",
   "results.complianceImportant": "Important",
   "results.sticky":
-    "LungLens is an educational tool only. This is not a medical diagnosis. Always consult a qualified healthcare professional for medical advice.",
+    "SkinTest is an educational tool only. This is not a medical diagnosis. Always consult a qualified healthcare professional for medical advice.",
   "results.pipelineTitle": "Pipeline model summary",
   "results.pipelineAllModelsTitle": "All model results",
   "results.model1": "Model 1 — ResNet-50",
@@ -326,7 +324,7 @@ const dictEn: Dict = {
   "results.provenance.hybridBanner.model1Only":
     "Model 1 used a live classifier. Model 6 (COPD tabular) did not run as a loaded neural model on this run. Findings, attention overlay, and doctor-question hints may include rule-based scaffolding.",
   "results.provenance.hybridBanner.model2Only":
-    "Model 6 (COPD tabular) ran on this upload. Model 1 did not run as a loaded X-ray classifier. Findings, attention overlay, and doctor-question hints may include rule-based scaffolding.",
+    "Model 6 (COPD tabular) ran on this upload. Model 1 did not run as a loaded skin photo classifier. Findings, attention overlay, and doctor-question hints may include rule-based scaffolding.",
   "results.provenance.hybridBanner.fallback":
     "This run mixed live and non-live sources. Check the pipeline badges for which steps used a model, rules, LLM, or static educational content.",
   "results.provenance.badge.llm": "LLM",
@@ -397,27 +395,27 @@ const dictEn: Dict = {
   "risk.uncertain": "uncertain",
   "upload.error.analysisFailed": "Analysis failed",
   "upload.error.retry": "Retry analysis",
-  "alt.selectedPreview": "Selected X-ray preview",
-  "alt.uploadedXray": "Your uploaded chest X-ray",
+  "alt.selectedPreview": "Selected skin photo preview",
+  "alt.uploadedXray": "Your uploaded skin photo",
   "alt.attentionOverlay": "Educational attention overlay",
-  "alt.xray": "Your X-ray",
+  "alt.xray": "Your skin photo",
   "alt.attentionNoPreview": "Attention map without original preview",
-  "alt.anatomyXray": "Chest X-ray with anatomy labels",
+  "alt.anatomyXray": "Skin photo with anatomy labels",
 
-  "learn.title": "Learn about chest X-rays",
+  "learn.title": "Learn about skin photos",
   "learn.topicPrefix": "Learn:",
   "learn.desc":
-    "Educational hub for anatomy, vocabulary, and how to read your report-without replacing your radiologist.",
+    "Educational hub for anatomy, vocabulary, and how to read your report-without replacing your dermatologist.",
   "learn.topicDesc":
     "Placeholder module for this topic. Rich articles and interactives will ship here.",
   "learn.coming": "Coming soon",
   "learn.comingDesc":
     "Interactive diagrams, normal vs. example cases, and short quizzes will complement what you see on your results dashboard.",
 
-  "about.badge": "About LungLens",
-  "about.title": "Built to make chest X-ray learning accessible",
+  "about.badge": "About SkinTest",
+  "about.title": "Built to make skin photo learning accessible",
   "about.subtitle":
-    "LungLens is a medical chest X-ray analysis and education tool designed to help people better understand imaging results in plain language. The focus is health literacy: helping users ask better questions, not replacing professional care.",
+    "SkinTest is a medical skin photo analysis and education tool designed to help people better understand imaging results in plain language. The focus is health literacy: helping users ask better questions, not replacing professional care.",
   "about.storyTitle": "Project Story",
   "about.storySub": "Solo research project + product build",
   "about.story1":
@@ -436,7 +434,7 @@ const dictEn: Dict = {
     "It is NOT a substitute for professional medical diagnosis.",
   "about.disclaimer3": "Always consult a qualified healthcare professional.",
   "about.stack": "Tech Stack",
-  "about.stackModel": "Model: PyTorch, trained on [dataset name, e.g. NIH ChestX-ray14]",
+  "about.stackModel": "Model: PyTorch, trained on [dataset name, e.g. NIH Chestskin photo14]",
   "about.stackFrontend": "Frontend: Next.js, Tailwind CSS",
   "about.stackDeploy": "Deployment: [Railway / Cloud Run / etc.]",
   "about.contactTitle": "Open Source / Contact",
@@ -451,26 +449,25 @@ const dictHant: Dict = {
   "nav.upload": "上傳",
   "nav.learn": "學習",
   "nav.about": "關於",
-  "nav.pitch": "簡報",
   "nav.language": "語言",
   "lang.en": "EN",
   "lang.hant": "繁中",
   "lang.hans": "簡中",
   "footer.important": "重要聲明",
   "footer.permanent":
-    "永久提示：LungLens 僅供教育用途，並不提供疾病診斷、亦不會取代醫生或放射科醫師的專業判讀。",
+    "永久提示：SkinTest 僅供教育用途，並不提供疾病診斷、亦不會取代醫生或皮膚科醫師的專業判讀。",
   "footer.extra":
-    "LungLens 不可取代專業醫療判斷。如遇緊急情況，請立即聯絡當地緊急服務。影像判讀應由持牌醫護團隊進行。",
+    "SkinTest 不可取代專業醫療判斷。如遇緊急情況，請立即聯絡當地緊急服務。影像判讀應由持牌醫護團隊進行。",
   "footer.copy": "僅供教育用途",
-  "landing.hero.badge": "胸肺 X 光教育夥伴",
-  "landing.hero.title": "看懂你的胸肺 X 光",
-  "landing.hero.subtitle": "已經有 X 光結果？我們可以幫你理解你正在看的影像內容。",
-  "landing.hero.ctaUpload": "上傳你的 X 光",
-  "landing.hero.ctaLearn": "了解胸肺 X 光",
+  "landing.hero.badge": "胸肺 皮膚照片教育夥伴",
+  "landing.hero.title": "看懂你的胸肺 皮膚照片",
+  "landing.hero.subtitle": "已經有 皮膚照片結果？我們可以幫你理解你正在看的影像內容。",
+  "landing.hero.ctaUpload": "上傳你的 皮膚照片",
+  "landing.hero.ctaLearn": "了解胸肺 皮膚照片",
   "landing.hero.trust": "你的影像不會離開你的裝置",
   "landing.how.title": "如何使用",
   "landing.how.subtitle": "由就診影像到更清晰理解，只需三個步驟。",
-  "landing.how.step1.title": "先看醫生並取得 X 光",
+  "landing.how.step1.title": "先看醫生並取得 皮膚照片",
   "landing.how.step1.body": "透過正常醫療流程取得影像，例如體檢、門診或覆診。",
   "landing.how.step2.title": "上傳影像進行教育性分析",
   "landing.how.step2.body": "上傳 JPEG 或 PNG，了解解剖位置與一般說明，而非診斷。",
@@ -486,22 +483,22 @@ const dictHant: Dict = {
   "landing.expect.does.3": "提供可向醫生詢問的問題方向",
   "landing.expect.does.4": "幫助已完成就醫者提升健康理解",
   "landing.expect.not.1": "不會診斷肺炎、癌症或其他疾病",
-  "landing.expect.not.2": "不會取代放射科醫師或主診醫師",
+  "landing.expect.not.2": "不會取代皮膚科醫師或主診醫師",
   "landing.expect.not.3": "不會告訴你是否需要治療或急診",
   "landing.expect.not.4": "不保證自動化輸出的完整性或準確性",
-  "landing.explore.aria": "更多關於 LungLens",
+  "landing.explore.aria": "更多關於 SkinTest",
   "landing.disclaimer.title": "醫療免責聲明",
   "landing.disclaimer.p1":
-    "LungLens 僅為健康教育工具，並非醫療器材，不提供診斷、預後或治療建議。請以醫護專業人員與正式放射科報告為準。",
+    "SkinTest 僅為健康教育工具，並非醫療器材，不提供診斷、預後或治療建議。請以醫護專業人員與正式皮膚科報告為準。",
   "landing.disclaimer.p2":
     "如有胸痛、呼吸困難、發燒或其他警訊症狀，請立即就醫，不要只依賴本網站。",
-  "upload.title": "上傳你的 X 光",
-  "upload.subtitle": "上傳胸肺 X 光以開始分析流程。",
+  "upload.title": "上傳你的 皮膚照片",
+  "upload.subtitle": "上傳胸肺 皮膚照片以開始分析流程。",
   "upload.step1": "醫師確認",
   "upload.step2": "隱私提示",
   "upload.step3": "上傳影像",
   "upload.step4": "問卷",
-  "upload.gate.title": "你的胸肺 X 光是否已由醫生檢視？",
+  "upload.gate.title": "你的胸肺 皮膚照片是否已由醫生檢視？",
   "upload.gate.desc": "我們會按你的回答顯示不同提示。本工具不取代醫療照護。",
   "upload.gate.yes": "是",
   "upload.gate.no": "否",
@@ -516,7 +513,7 @@ const dictHant: Dict = {
   "upload.privacy.next": "繼續上傳",
   "upload.dicom.title": "支援的影像格式",
   "upload.dicom.desc": "請上傳 JPEG、PNG 或 WEBP。檔案上限 10MB。",
-  "upload.drop.prompt": "拖曳並放下胸肺 X 光",
+  "upload.drop.prompt": "拖曳並放下胸肺 皮膚照片",
   "upload.drop.note": "JPEG、PNG 或 WEBP，上限 10MB",
   "upload.preview": "預覽",
   "upload.preview.noInline": "瀏覽器暫不支援此檔案預覽。",
@@ -531,7 +528,7 @@ const dictHant: Dict = {
   "upload.pipeline.gemini": "諮詢 Gemini AI 產生臨床教育摘要…",
   "upload.pipeline.finalize": "正在完成個人化報告…",
   "upload.pipeline.progressLabel": "分析進度",
-  "upload.analyzing": "AI 正在分析你的 X 光…（通常需時 5-10 秒）",
+  "upload.analyzing": "AI 正在分析你的 皮膚照片…（通常需時 5-10 秒）",
   "upload.fileError.type": "請使用 JPEG、PNG 或 WEBP。",
   "upload.fileError.size": "檔案大於 10MB。",
 
@@ -546,7 +543,7 @@ const dictHant: Dict = {
   "densenet.gradcam.label": "Grad-CAM 疊加圖",
   "densenet.gradcam.caption": "亮色區域顯示模型關注的位置",
   "densenet.gradcam.unavailable": "本次回應未包含 Grad-CAM 疊加圖（仍會顯示上方類別機率）。",
-  "densenet.alt.preview": "已上傳胸肺 X 光預覽",
+  "densenet.alt.preview": "已上傳胸肺 皮膚照片預覽",
   "densenet.alt.gradcam": "DenseNet-121 Grad-CAM 疊加圖",
   "densenet.caption.modelInputCrop": "與 DenseNet-121 相同的 224×224 中央裁切（與右側 Grad-CAM 畫面一致）。",
   "densenet.caption.fullUploadPreview": "完整上傳預覽。構圖可能與模型 224×224 輸入及 Grad-CAM 不同。",
@@ -571,7 +568,7 @@ const dictHant: Dict = {
   "upload.modeConfigured.api": "目前設定為呼叫後端 API（最終運行模式以後端 provenance 為準）。",
   "upload.geminiOptional.label": "Gemini API 金鑰（選填，供 AI 臨床摘要）",
   "upload.geminiOptional.help":
-    "選填。僅存在此瀏覽器。提交本表單時驗證金鑰，並與問卷答案一併以 gemini_api_key 送出。LungLens 伺服端不會保存。",
+    "選填。僅存在此瀏覽器。提交本表單時驗證金鑰，並與問卷答案一併以 gemini_api_key 送出。SkinTest 伺服端不會保存。",
   "upload.geminiOptional.placeholder": "若使用 BYOK，請貼上 Google AI Studio 金鑰",
   "results.loading": "結果載入中…",
   "results.redirecting": "正在返回上傳頁…",
@@ -582,7 +579,7 @@ const dictHant: Dict = {
   "results.exportingPdf": "正在匯出 PDF…",
   "results.exportPdfError": "PDF 匯出失敗，請再試一次。",
   "results.pdfGeneratedAt": "產生時間",
-  "results.pdfReportHeaderTitle": "LungLens 教育報告",
+  "results.pdfReportHeaderTitle": "SkinTest 教育報告",
   "results.llmEducatorTitle": "AI 臨床顧問",
   "results.llmAdvisorTitle": "AI 臨床顧問",
   "results.llmAiGeneratedBadge": "AI 生成",
@@ -592,12 +589,12 @@ const dictHant: Dict = {
   "results.llmLocaleUnavailable": "此語言未回傳教育者摘要文字。",
   "results.llmHowGeneratedTrigger": "此摘要如何產生",
   "results.llmHowGeneratedBodyEn":
-    "This section uses a large language model (LLM) on the server to turn model outputs and educational context into plain-language notes. It is for learning only: it does not diagnose disease, confirm that you are healthy, or replace your clinician or radiologist. Always discuss imaging with your care team.",
+    "This section uses a large language model (LLM) on the server to turn model outputs and educational context into plain-language notes. It is for learning only: it does not diagnose disease, confirm that you are healthy, or replace your clinician or dermatologist. Always discuss imaging with your care team.",
   "results.llmHowGeneratedBodyHant":
-    "此區塊由伺服端的大型語言模型（LLM）將模型輸出與教育脈絡整理成較易讀的文字，僅供學習參考：不作疾病診斷、不保證身體狀況，也不能取代醫師或放射科醫師。影像判讀請務必與醫護團隊討論。",
+    "此區塊由伺服端的大型語言模型（LLM）將模型輸出與教育脈絡整理成較易讀的文字，僅供學習參考：不作疾病診斷、不保證身體狀況，也不能取代醫師或皮膚科醫師。影像判讀請務必與醫護團隊討論。",
   "results.llmHowGeneratedBodyHans":
-    "此区块由服务器端的大型语言模型（LLM）将模型输出与教育语境整理成较易读的文字，仅供学习参考：不作疾病诊断、不保证身体状况，也不能替代医师或放射科医生。影像解读请务必与医护团队讨论。",
-  "results.pdfSection.visualXray": "X 光影像分析",
+    "此区块由服务器端的大型语言模型（LLM）将模型输出与教育语境整理成较易读的文字，仅供学习参考：不作疾病诊断、不保证身体状况，也不能替代医师或皮膚科医生。影像解读请务必与医护团队讨论。",
+  "results.pdfSection.visualXray": "皮膚照片影像分析",
   "results.ensembleArchitecture.title": "查看集成架構詳情",
   "results.ensembleArchitecture.colDisplayName": "顯示名稱",
   "results.ensembleArchitecture.colArchitecture": "架構",
@@ -621,12 +618,12 @@ const dictHant: Dict = {
   "results.poweredBy.model5": "由模型 5（DenseNet-121）提供 · Charles 訓練",
   "results.poweredBy.model6": "由模型 6（慢性肺部風險／COPD）提供 · Charles 訓練",
   "results.complianceImportant": "重要提示",
-  "results.pdfXray": "原始 X 光",
+  "results.pdfXray": "原始 皮膚照片",
   "results.pdfAttentionMap": "AI 注意力熱圖",
-  "results.noDoctor": "你表示尚未有醫生檢視此 X 光。請儘快諮詢醫護人員作正規診斷。",
-  "results.tab.xray": "你的 X 光",
+  "results.noDoctor": "你表示尚未有醫生檢視此 皮膚照片。請儘快諮詢醫護人員作正規診斷。",
+  "results.tab.xray": "你的 皮膚照片",
   "results.tab.attention": "AI 注意力熱圖",
-  "results.attention.cardTitle": "X 光熱圖分析",
+  "results.attention.cardTitle": "皮膚照片熱圖分析",
   "results.attention.cardDescription":
     "Grad-CAM 疊圖顯示卷積模型在肺野的關注區域。僅供教育用途，並非診斷。",
   "results.attention.overlayBadge": "模型 1 — ResNet-50 注意力",
@@ -634,7 +631,7 @@ const dictHant: Dict = {
   "results.attention.overlayBadgeGlobal": "AI 注意力熱圖",
   "results.attention.edu.title": "了解 AI 注意力熱圖",
   "results.attention.edu.intro":
-    "進階 AI 模型有時像黑箱。為保持透明，LungLens 使用可解釋 AI（XAI）熱圖，讓你了解哪些區域影響了模型的教育性摘要。這並非診斷。",
+    "進階 AI 模型有時像黑箱。為保持透明，SkinTest 使用可解釋 AI（XAI）熱圖，讓你了解哪些區域影響了模型的教育性摘要。這並非診斷。",
   "results.attention.edu.colorsTitle": "顏色的意義",
   "results.attention.edu.colorsBody":
     "紅色與黃色區域標示最強烈影響模型教育性輸出的像素模式。",
@@ -646,20 +643,20 @@ const dictHant: Dict = {
   "results.tab.anatomy": "解剖導覽",
   "results.noPreview": "此檔案暫無預覽，若需要可轉成 PNG/JPEG 再查看。",
   "results.noAttention": "本次分析沒有提供注意力熱圖。",
-  "results.attentionNote": "顏色較強區域代表模型關注位置，並非診斷結果，也不能取代放射科判讀。",
+  "results.attentionNote": "顏色較強區域代表模型關注位置，並非診斷結果，也不能取代皮膚科判讀。",
   "results.attentionNoteSoloModelCam":
     "顯示為 ResNet-50 的 Grad-CAM，疊加在與模型相同的 224×224 中央裁切輸入上（未疊在你上傳的完整解析度預覽上）。僅供教育用途。",
   "results.noAttentionReturned": "本次分析未回傳注意力熱圖。",
-  "results.anatomyPlaceholder": "標準 PA 胸肺 X 光的常見標記位置（教育示意）。",
+  "results.anatomyPlaceholder": "標準 PA 胸肺 皮膚照片的常見標記位置（教育示意）。",
   "results.anatomyHeader": "AI 注意到的內容",
   "results.notice.pneumoniaBacterialTitle": "肺炎（細菌性模式）",
   "results.notice.pneumoniaViralTitle": "肺炎（病毒性模式）",
   "results.notice.pneumoniaBacterialBody":
-    "教育上，細菌性肺炎常描述為肺泡實變（有時呈葉性分布），可能伴隨肋膜積液。X 光模式可重疊，無法單靠影像確定病原。此為模型分數提示，需由醫師結合症狀與檢查解讀。",
+    "教育上，細菌性肺炎常描述為肺泡實變（有時呈葉性分布），可能伴隨肋膜積液。皮膚照片模式可重疊，無法單靠影像確定病原。此為模型分數提示，需由醫師結合症狀與檢查解讀。",
   "results.notice.pneumoniaViralBody":
     "病毒性肺炎常描述為較多間質變化，後期可出現斑片狀陰影。進階影像可能見磨玻璃或小结節，但可與其他肺炎相似。僅供教育用途，不能取代病毒檢測或臨床判斷。",
-  "results.anatomySub": "以下為教育用途分數，不代表診斷，最終仍需由放射科醫師確認。",
-  "results.noSignificant": "AI 未標示明顯重點區域。這一般可能接近正常 X 光表現，但仍需放射科醫師確認。",
+  "results.anatomySub": "以下為教育用途分數，不代表診斷，最終仍需由皮膚科醫師確認。",
+  "results.noSignificant": "AI 未標示明顯重點區域。這一般可能接近正常 皮膚照片表現，但仍需皮膚科醫師確認。",
   "results.attentionLevel": "關注程度",
   "results.low": "低",
   "results.moderate": "中",
@@ -673,7 +670,7 @@ const dictHant: Dict = {
   "results.copied": "已複製",
   "results.learnMore": "延伸閱讀",
   "results.learnMoreSub": "到學習頁查看更多主題內容，協助你與醫護人員溝通。",
-  "results.basics": "胸肺 X 光基礎",
+  "results.basics": "胸肺 皮膚照片基礎",
   "results.basicsSub": "解剖、術語與報告閱讀入門",
   "results.topicSub": "名詞解釋、常見情境與門診提問方向",
   "anatomy.trachea": "氣管",
@@ -681,13 +678,13 @@ const dictHant: Dict = {
   "anatomy.left-lung": "左肺",
   "anatomy.right-lung": "右肺",
   "anatomy.diaphragm": "橫膈膜",
-  "anatomy.desc.trachea": "中線氣道。若偏移可能有多種原因，需由放射科醫師判讀。",
+  "anatomy.desc.trachea": "中線氣道。若偏移可能有多種原因，需由皮膚科醫師判讀。",
   "anatomy.desc.heart": "心影大小與形狀需配合臨床狀況解讀。",
   "anatomy.desc.left-lung": "在標準 PA 視圖中，左肺常顯示於影像右側。",
   "anatomy.desc.right-lung": "在標準 PA 視圖中，右肺常顯示於影像左側。",
   "anatomy.desc.diaphragm": "位於肺下方的拱形肌肉，其位置可反映肺容量。",
   "results.sticky":
-    "LungLens 僅供教育用途，並非醫療診斷。請務必就醫並諮詢合資格醫護專業人員以取得醫療建議。",
+    "SkinTest 僅供教育用途，並非醫療診斷。請務必就醫並諮詢合資格醫護專業人員以取得醫療建議。",
   "results.pipelineTitle": "模型流程摘要",
   "results.pipelineAllModelsTitle": "所有模型結果",
   "results.model1": "模型 1 — ResNet-50",
@@ -721,7 +718,7 @@ const dictHant: Dict = {
   "results.provenance.hybridBanner.model1Only":
     "模型 1 使用即時分類模型。模型 6（COPD 問卷）此輪未以已載入的神經模型執行。發現區塊、關注圖與醫師提問提示仍可能包含規則型教育內容。",
   "results.provenance.hybridBanner.model2Only":
-    "模型 6（COPD 問卷）已執行。模型 1 此輪未以已載入的 X 光分類模型執行。發現區塊、關注圖與醫師提問提示仍可能包含規則型教育內容。",
+    "模型 6（COPD 問卷）已執行。模型 1 此輪未以已載入的 皮膚照片分類模型執行。發現區塊、關注圖與醫師提問提示仍可能包含規則型教育內容。",
   "results.provenance.hybridBanner.fallback":
     "本次為混合來源執行。請參考下方各步驟標籤，確認哪些為模型、規則、LLM 或固定教育內容。",
   "results.provenance.badge.llm": "LLM",
@@ -791,22 +788,22 @@ const dictHant: Dict = {
   "risk.uncertain": "不確定",
   "upload.error.analysisFailed": "分析失敗",
   "upload.error.retry": "重試分析",
-  "alt.selectedPreview": "已選擇的 X 光預覽",
-  "alt.uploadedXray": "你上傳的 X 光",
+  "alt.selectedPreview": "已選擇的 皮膚照片預覽",
+  "alt.uploadedXray": "你上傳的 皮膚照片",
   "alt.attentionOverlay": "教育用途注意力疊圖",
-  "alt.xray": "你的 X 光",
+  "alt.xray": "你的 皮膚照片",
   "alt.attentionNoPreview": "沒有原圖預覽的注意力圖",
-  "alt.anatomyXray": "帶有解剖標籤的 X 光",
-  "learn.title": "了解胸肺 X 光",
+  "alt.anatomyXray": "帶有解剖標籤的 皮膚照片",
+  "learn.title": "了解胸肺 皮膚照片",
   "learn.topicPrefix": "主題：",
-  "learn.desc": "學習解剖、常見術語與報告閱讀方式，但不取代放射科醫師判讀。",
+  "learn.desc": "學習解剖、常見術語與報告閱讀方式，但不取代皮膚科醫師判讀。",
   "learn.topicDesc": "此主題內容為示意頁，後續將加入更完整教材與互動。",
   "learn.coming": "即將推出",
   "learn.comingDesc": "之後會加入互動解剖圖、正常與案例對照，以及短測驗。",
-  "about.badge": "關於 LungLens",
-  "about.title": "讓胸肺 X 光學習更普及",
+  "about.badge": "關於 SkinTest",
+  "about.title": "讓胸肺 皮膚照片學習更普及",
   "about.subtitle":
-    "LungLens 是胸肺 X 光分析與教育工具，目標是以淺白方式幫助使用者理解影像結果，提升健康素養，而非取代專業醫療判斷。",
+    "SkinTest 是胸肺 皮膚照片分析與教育工具，目標是以淺白方式幫助使用者理解影像結果，提升健康素養，而非取代專業醫療判斷。",
   "about.storyTitle": "專案故事",
   "about.storySub": "個人研究專案 + 產品化",
   "about.story1":
@@ -823,7 +820,7 @@ const dictHant: Dict = {
   "about.disclaimer2": "本工具不能取代專業醫療診斷。",
   "about.disclaimer3": "請務必諮詢合資格醫護專業人員。",
   "about.stack": "技術棧",
-  "about.stackModel": "模型：PyTorch（訓練資料：[dataset name, e.g. NIH ChestX-ray14]）",
+  "about.stackModel": "模型：PyTorch（訓練資料：[dataset name, e.g. NIH Chestskin photo14]）",
   "about.stackFrontend": "前端：Next.js、Tailwind CSS",
   "about.stackDeploy": "部署：[Railway / Cloud Run / etc.]",
   "about.contactTitle": "開源 / 聯絡",
@@ -839,19 +836,18 @@ const dictHans: Dict = {
   "nav.upload": "上传",
   "nav.learn": "学习",
   "nav.about": "关于",
-  "nav.pitch": "路演",
   "lang.hant": "繁中",
   "lang.hans": "简中",
   "footer.important": "重要声明",
   "footer.copy": "仅供教育用途",
   "landing.hero.title": "看懂你的胸片结果",
-  "landing.hero.subtitle": "已经有 X 光结果？我们可以帮你理解你正在看的影像内容。",
+  "landing.hero.subtitle": "已经有 皮膚照片结果？我们可以帮你理解你正在看的影像内容。",
   "landing.how.title": "如何使用",
   "landing.expect.title": "先明确定位",
-  "landing.explore.aria": "更多关于 LungLens",
+  "landing.explore.aria": "更多关于 SkinTest",
   "landing.disclaimer.title": "医疗免责声明",
-  "upload.title": "上传你的 X 光",
-  "upload.subtitle": "上传胸肺 X 光以开始分析流程。",
+  "upload.title": "上传你的 皮膚照片",
+  "upload.subtitle": "上传胸肺 皮膚照片以开始分析流程。",
   "upload.step1": "医生确认",
   "upload.step3": "上传影像",
   "upload.step4": "问卷",
@@ -912,7 +908,7 @@ const dictHans: Dict = {
   "upload.modeConfigured.api": "当前配置为调用后端 API（最终运行模式以后端 provenance 为准）。",
   "upload.geminiOptional.label": "Gemini API 密钥（可选，用于 AI 临床摘要）",
   "upload.geminiOptional.help":
-    "可选。仅保存在本浏览器。提交本表单时验证密钥，并与问卷答案一并作为 gemini_api_key 发送。LungLens 服务端不会保存。",
+    "可选。仅保存在本浏览器。提交本表单时验证密钥，并与问卷答案一并作为 gemini_api_key 发送。SkinTest 服务端不会保存。",
   "upload.geminiOptional.placeholder": "若使用 BYOK，请粘贴 Google AI Studio 密钥",
   "results.title": "你的教育报告",
   "results.subtitle": "查看影像、注意力热图与解剖提示，再把问题带回给医护团队。",
@@ -921,7 +917,7 @@ const dictHans: Dict = {
   "results.exportingPdf": "正在导出 PDF…",
   "results.exportPdfError": "PDF 导出失败，请重试。",
   "results.pdfGeneratedAt": "生成时间",
-  "results.pdfReportHeaderTitle": "LungLens 教育报告",
+  "results.pdfReportHeaderTitle": "SkinTest 教育报告",
   "results.llmEducatorTitle": "AI 临床顾问",
   "results.llmAdvisorTitle": "AI 临床顾问",
   "results.llmAiGeneratedBadge": "AI 生成",
@@ -931,12 +927,12 @@ const dictHans: Dict = {
   "results.llmLocaleUnavailable": "此语言未返回教育者摘要文字。",
   "results.llmHowGeneratedTrigger": "此摘要如何生成",
   "results.llmHowGeneratedBodyEn":
-    "This section uses a large language model (LLM) on the server to turn model outputs and educational context into plain-language notes. It is for learning only: it does not diagnose disease, confirm that you are healthy, or replace your clinician or radiologist. Always discuss imaging with your care team.",
+    "This section uses a large language model (LLM) on the server to turn model outputs and educational context into plain-language notes. It is for learning only: it does not diagnose disease, confirm that you are healthy, or replace your clinician or dermatologist. Always discuss imaging with your care team.",
   "results.llmHowGeneratedBodyHant":
-    "此區塊由伺服端的大型語言模型（LLM）將模型輸出與教育脈絡整理成較易讀的文字，僅供學習參考：不作疾病診斷、不保證身體狀況，也不能取代醫師或放射科醫師。影像判讀請務必與醫護團隊討論。",
+    "此區塊由伺服端的大型語言模型（LLM）將模型輸出與教育脈絡整理成較易讀的文字，僅供學習參考：不作疾病診斷、不保證身體狀況，也不能取代醫師或皮膚科醫師。影像判讀請務必與醫護團隊討論。",
   "results.llmHowGeneratedBodyHans":
-    "此区块由服务器端的大型语言模型（LLM）将模型输出与教育语境整理成较易读的文字，仅供学习参考：不作疾病诊断、不保证身体状况，也不能替代医师或放射科医生。影像解读请务必与医护团队讨论。",
-  "results.pdfSection.visualXray": "X 光影像分析",
+    "此区块由服务器端的大型语言模型（LLM）将模型输出与教育语境整理成较易读的文字，仅供学习参考：不作疾病诊断、不保证身体状况，也不能替代医师或皮膚科医生。影像解读请务必与医护团队讨论。",
+  "results.pdfSection.visualXray": "皮膚照片影像分析",
   "results.ensembleArchitecture.title": "查看集成架构详情",
   "results.ensembleArchitecture.colDisplayName": "显示名称",
   "results.ensembleArchitecture.colArchitecture": "架构",
@@ -960,12 +956,12 @@ const dictHans: Dict = {
   "results.poweredBy.model5": "由模型 5（DenseNet-121）提供 · Charles 训练",
   "results.poweredBy.model6": "由模型 6（慢性肺部风险／COPD）提供 · Charles 训练",
   "results.complianceImportant": "重要提示",
-  "results.pdfXray": "原始 X 光",
+  "results.pdfXray": "原始 皮膚照片",
   "results.pdfAttentionMap": "AI 注意力热图",
   "results.learnMore": "延伸阅读",
-  "results.tab.xray": "你的 X 光",
+  "results.tab.xray": "你的 皮膚照片",
   "results.tab.attention": "AI 注意力热图",
-  "results.attention.cardTitle": "X 光热图分析",
+  "results.attention.cardTitle": "皮膚照片热图分析",
   "results.attention.cardDescription":
     "Grad-CAM 叠图显示卷积模型在肺野的关注区域。仅供教育用途，并非诊断。",
   "results.attention.overlayBadge": "模型 1 — ResNet-50 注意力",
@@ -973,7 +969,7 @@ const dictHans: Dict = {
   "results.attention.overlayBadgeGlobal": "AI 注意力热图",
   "results.attention.edu.title": "了解 AI 注意力热图",
   "results.attention.edu.intro":
-    "进阶 AI 模型有时像黑箱。为保持透明，LungLens 使用可解释 AI（XAI）热图，让你了解哪些区域影响了模型的教育性摘要。这并非诊断。",
+    "进阶 AI 模型有时像黑箱。为保持透明，SkinTest 使用可解释 AI（XAI）热图，让你了解哪些区域影响了模型的教育性摘要。这并非诊断。",
   "results.attention.edu.colorsTitle": "颜色的意义",
   "results.attention.edu.colorsBody":
     "红色与黄色区域标示最强烈影响模型教育性输出的像素模式。",
@@ -987,7 +983,7 @@ const dictHans: Dict = {
   "results.notice.pneumoniaBacterialTitle": "肺炎（细菌性模式）",
   "results.notice.pneumoniaViralTitle": "肺炎（病毒性模式）",
   "results.notice.pneumoniaBacterialBody":
-    "教育上，细菌性肺炎常描述为肺泡实变（有时呈叶性分布），可能伴随胸膜积液。X 光模式可重叠，无法单靠影像确定病原。此为模型分数提示，需由医生结合症状与检查解读。",
+    "教育上，细菌性肺炎常描述为肺泡实变（有时呈叶性分布），可能伴随胸膜积液。皮膚照片模式可重叠，无法单靠影像确定病原。此为模型分数提示，需由医生结合症状与检查解读。",
   "results.notice.pneumoniaViralBody":
     "病毒性肺炎常描述为较多间质变化，后期可出现斑片状阴影。进阶影像可能见磨玻璃或小结节，但可与其他肺炎相似。仅供教育用途，不能取代病毒检测或临床判断。",
   "results.questionsTitle": "与本次扫描相关的健康资讯",
@@ -995,9 +991,9 @@ const dictHans: Dict = {
     "根据 AI 发现提供的一般背景（治疗方向与研究脉络），并非诊断或即时新闻。",
   "results.doctorQuestionsEmptyFallback":
     "未能加载与这些发现相关的教育信息。请直接向医生咨询。",
-  "results.noSignificant": "AI 未标示明显重点区域。这通常可能接近正常 X 光表现，但仍需放射科医生确认。",
+  "results.noSignificant": "AI 未标示明显重点区域。这通常可能接近正常 皮膚照片表现，但仍需皮膚科医生确认。",
   "results.sticky":
-    "LungLens 仅供教育用途，并非医疗诊断。请务必就医并咨询合格医务人员以获取医疗建议。",
+    "SkinTest 仅供教育用途，并非医疗诊断。请务必就医并咨询合格医务人员以获取医疗建议。",
   "results.pipelineTitle": "模型流程摘要",
   "results.pipelineAllModelsTitle": "所有模型结果",
   "results.model1": "模型 1 — ResNet-50",
@@ -1042,7 +1038,7 @@ const dictHans: Dict = {
   "results.provenance.hybridBanner.model1Only":
     "模型 1 使用实时分类模型。模型 6（COPD 问卷）本轮未以已加载的神经网络模型运行。发现板块、关注图与医生提问提示仍可能包含基于规则的教育内容。",
   "results.provenance.hybridBanner.model2Only":
-    "模型 6（COPD 问卷）已运行。模型 1 本轮未以已加载的 X 光分类模型运行。发现板块、关注图与医生提问提示仍可能包含基于规则的教育内容。",
+    "模型 6（COPD 问卷）已运行。模型 1 本轮未以已加载的 皮膚照片分类模型运行。发现板块、关注图与医生提问提示仍可能包含基于规则的教育内容。",
   "results.provenance.hybridBanner.fallback":
     "本次为混合来源运行。请参考下方各步骤标签，确认哪些为模型、规则、LLM 或静态教育内容。",
   "results.provenance.nested.stageSkipped": "模型 {n} 已跳过。",
@@ -1096,19 +1092,19 @@ const dictHans: Dict = {
   "risk.uncertain": "不确定",
   "upload.error.analysisFailed": "分析失败",
   "upload.error.retry": "重试分析",
-  "alt.selectedPreview": "已选择的 X 光预览",
-  "alt.uploadedXray": "你上传的 X 光",
+  "alt.selectedPreview": "已选择的 皮膚照片预览",
+  "alt.uploadedXray": "你上传的 皮膚照片",
   "alt.attentionOverlay": "教育用途注意力叠图",
-  "alt.xray": "你的 X 光",
+  "alt.xray": "你的 皮膚照片",
   "alt.attentionNoPreview": "没有原图预览的注意力图",
-  "alt.anatomyXray": "带有解剖标签的 X 光",
+  "alt.anatomyXray": "带有解剖标签的 皮膚照片",
   "results.topicSub": "名词解释、常见情境与门诊提问方向",
   "anatomy.trachea": "气管",
   "anatomy.heart": "心脏",
   "anatomy.left-lung": "左肺",
   "anatomy.right-lung": "右肺",
   "anatomy.diaphragm": "膈肌",
-  "anatomy.desc.trachea": "中线气道。若偏移可能有多种原因，需由放射科医生判读。",
+  "anatomy.desc.trachea": "中线气道。若偏移可能有多种原因，需由皮膚科医生判读。",
   "anatomy.desc.heart": "心影大小与形状需结合临床情况解读。",
   "anatomy.desc.left-lung": "在标准 PA 视图中，左肺常显示在影像右侧。",
   "anatomy.desc.right-lung": "在标准 PA 视图中，右肺常显示在影像左侧。",
@@ -1116,7 +1112,7 @@ const dictHans: Dict = {
   "learn.title": "了解胸片",
   "learn.topicPrefix": "主题：",
   "learn.coming": "即将推出",
-  "about.badge": "关于 LungLens",
+  "about.badge": "关于 SkinTest",
   "about.title": "让胸片学习更普及",
   "about.storyTitle": "项目故事",
   "about.storySub": "个人研究项目 + 产品化",

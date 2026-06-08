@@ -96,9 +96,9 @@ export function DenseNetPredictorCard({ endpoint = "/predict" }: { endpoint?: st
   return (
     <Card className="border-slate-200 shadow-sm">
       <CardHeader>
-        <CardTitle className="text-xl">DenseNet-121 X-Ray Analysis</CardTitle>
+        <CardTitle className="text-xl">DenseNet-121 Skin Photo Analysis</CardTitle>
         <CardDescription>
-          Upload a chest X-ray (JPEG/PNG), then run inference against the backend `POST /predict` endpoint.
+          Upload a skin photo (JPEG/PNG), then run inference against the backend `POST /predict` endpoint.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
@@ -110,7 +110,7 @@ export function DenseNetPredictorCard({ endpoint = "/predict" }: { endpoint?: st
             onChange={(e) => onFileChange(e.target.files?.[0] ?? null)}
           />
           <UploadCloud className="mb-2 h-8 w-8 text-slate-500" />
-          <p className="text-sm font-medium text-slate-900">Drag and drop an X-ray image, or click to upload</p>
+          <p className="text-sm font-medium text-slate-900">Drag and drop a skin photo, or click to upload</p>
           <p className="mt-1 text-xs text-slate-500">Accepted formats: JPG, JPEG, PNG</p>
         </label>
 
@@ -118,7 +118,7 @@ export function DenseNetPredictorCard({ endpoint = "/predict" }: { endpoint?: st
           <div className="space-y-3">
             <p className="text-sm font-medium text-slate-800">Image preview</p>
             <div className="relative h-72 w-full overflow-hidden rounded-lg border bg-black/5">
-              <Image src={previewUrl} alt="Uploaded chest X-ray preview" fill className="object-contain" unoptimized />
+              <Image src={previewUrl} alt="Uploaded skin photo preview" fill className="object-contain" unoptimized />
             </div>
           </div>
         )}
@@ -130,7 +130,7 @@ export function DenseNetPredictorCard({ endpoint = "/predict" }: { endpoint?: st
               Analyzing...
             </>
           ) : (
-            "Analyze X-Ray"
+            "Analyze Skin Photo"
           )}
         </Button>
 

@@ -30,7 +30,7 @@ export async function POST(req: Request) {
 
     if (!res.ok) {
       const errorText = await res.text();
-      console.error("[LungLens /api/generate-questions proxy] Backend error", {
+      console.error("[SkinTest /api/generate-questions proxy] Backend error", {
         status: res.status,
         backendBase: base,
         errorText: errorText.slice(0, 500),
@@ -41,7 +41,7 @@ export async function POST(req: Request) {
     const data = await res.json();
     return NextResponse.json(data);
   } catch (error) {
-    console.error("[LungLens /api/generate-questions proxy] Network or unexpected error", error, {
+    console.error("[SkinTest /api/generate-questions proxy] Network or unexpected error", error, {
       backendBase: base,
     });
     return NextResponse.json({ educational_insights: [] }, { status: 502 });

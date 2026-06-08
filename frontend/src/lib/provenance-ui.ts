@@ -78,7 +78,7 @@ function classifierSourceIsModel(
   return normalizeToBadgeSource(pipelineProvenanceSource(provenance, which)) === "model";
 }
 
-/** True when primary X-ray classifier (Model 1) ran as live `source: "model"`. */
+/** True when the primary vision classifier (Model 1) ran as live `source: "model"`. */
 export function bothClassifierModelsLive(provenance: AnalyzeProvenance | undefined): boolean {
   return classifierSourceIsModel(provenance, "model1");
 }
@@ -102,13 +102,13 @@ export function hybridRunModeBannerMessage(
   if (!m1 && m2Vision) {
     return t(
       "results.provenance.hybridBanner.model2Only",
-      "Model 2 (ResNet-152V2) ran on this upload. Model 1 did not run as a loaded X-ray classifier. Findings, attention overlay, and doctor-question hints may include rule-based scaffolding.",
+      "Model 2 (ResNet-152V2) ran on this upload. Model 1 did not run as a loaded vision classifier. Findings, attention overlay, and doctor-question hints may include rule-based scaffolding.",
     );
   }
   if (!m1 && !m2Vision && m6Copd) {
     return t(
       "results.provenance.hybridBanner.model6Only",
-      "Model 6 (COPD tabular) ran on this upload. X-ray classifiers did not run as loaded neural models.",
+      "Model 6 (COPD tabular) ran on this upload. Vision classifiers did not run as loaded neural models.",
     );
   }
   return t(

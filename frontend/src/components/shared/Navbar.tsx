@@ -14,7 +14,6 @@ const links = [
   { href: "/upload", key: "nav.upload" as const },
   { href: "/learn", key: "nav.learn" as const },
   { href: "/about", key: "nav.about" as const },
-  { href: "/pitch", key: "nav.pitch" as const },
 ];
 
 export function Navbar({ className }: { className?: string }) {
@@ -35,7 +34,7 @@ export function Navbar({ className }: { className?: string }) {
           <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-sky-100/90 text-primary">
             <Activity className="h-4 w-5" aria-hidden />
           </span>
-          LungLens
+          SkinTest
         </Link>
         <div className="flex flex-wrap items-center gap-3">
         <nav className="flex flex-wrap items-center gap-x-5 gap-y-1 text-sm">

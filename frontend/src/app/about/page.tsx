@@ -126,7 +126,7 @@ export default function AboutPage() {
           </CardHeader>
           <CardContent className="flex flex-wrap gap-3">
             <Button asChild>
-              <Link href="https://github.com/Charleschtsoi/LungLens" target="_blank" rel="noopener noreferrer">
+              <Link href="https://github.com/Charleschtsoi/SkinTest" target="_blank" rel="noopener noreferrer">
                 {t("about.github")}
               </Link>
             </Button>
